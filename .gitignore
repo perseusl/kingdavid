@@ -19,4 +19,5 @@ media/js/
 /nbproject
 resource_config.json
 node_modules
+app/etc/local.xml
 .DS_STORE
