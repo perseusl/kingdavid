@@ -1,4 +1,31 @@
 /**
  * WARNING: Do not change this file. Your changes will be lost.
- * 2014-11-14 04:03:52 */
+ * 2015-08-06 15:35:06 */
 
+#newsletter_popup h2{letter-spacing: -0.9px}#newsletter_popup p{letter-spacing: 0.4px}#newsletter_popup button.button{letter-spacing: 2px;}#newsletter_popup{
+width:830px;height:400px;}
+.cms-index-index .header-container {
+                margin-bottom: 22px;
+                }
+                .footer-middle {
+                  padding: 20px 0 0;
+                }
+                .footer-middle .widget .widget-title {
+                  font-size: 16px;
+                  font-weight: 600;
+                }
+                .footer .widget .hours-list li > span {
+                  color: #fff;
+                }
+                .footer .footer-bottom-area {
+                  border-top: 0;
+                }
+                .banner-info.custom {
+                background-color:rgba(109,76,61,1);
+                }
+                .banner-info.custom:hover {
+                background-color:rgba(109,76,61,0.9);
+                }
+                .banner-info.custom p{
+                color: #c59e8d;
+                }
