@@ -1,0 +1,316 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <action method="addBodyClass" ifconfig="mango_settings/general/boxed" condition="boxed"><classname>boxed</classname></action>
+            <action method="addBodyClass" ifconfig="mango_settings/general/rtl"><classname>rtl</classname></action>
+            <action method="addBodyClass" ifconfig="mango_settings/header/type" condition="9"><classname>split-header</classname></action>
+            <action method="addBodyClass" ifconfig="mango_settings/header/type" condition="10"><classname>side-header</classname></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>smartwave/jquery/jquery-1.11.2.min.js</script></action>
+            <action method="addJs"><script>smartwave/jquery/jquery-noconflict.js</script></action>
+            <action method="addJs"><script>smartwave/jquery/jquery-ui-1.11.4.min.js</script></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/jquery-ui-1.11.4.min.css</name></action>
+            <action method="addJs"><script>smartwave/jquery/plugins/fancybox/jquery.fancybox.pack.js</script></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/plugins/fancybox/jquery.fancybox.css</name></action>
+            <action method="addItem"><type>js</type><name>smartwave/jquery/plugins/selectbox/jquery.selectbox.js</name><params/></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/plugins/selectbox/selectbox.css</name></action>
+            <action method="addItem"><type>js</type><name>smartwave/jquery/plugins/parallax/jquery.parallax.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/mango.js</name></action>
+
+            <action method="addItem" ifconfig="mango_settings/general/rtl" condition="0"><type>js_css</type><name>smartwave/bootstrap/css/bootstrap.min.css</name></action>
+            <action method="addItem" ifconfig="mango_settings/general/rtl" condition="1"><type>js_css</type><name>smartwave/bootstrap/css/bootstrap-rtl.min.css</name></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/bootstrap/css/bootstrap-theme.min.css</name></action>
+            <action method="addJs"><script>smartwave/bootstrap/js/bootstrap.min.js</script></action>
+
+            <action method="addJs"><script>smartwave/jquery/plugins/owl.carousel/owl.carousel.min.js</script></action>
+            <action method="addItem"><type>js_css</type><name>smartwave/jquery/plugins/owl.carousel/assets/owl.carousel.css</name></action>
+            
+            <action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>
+            <action method="addCss"><stylesheet>icons/css/animation.css</stylesheet></action>
+
+            <action method="addCss" ifconfig="mango_settings/general/rtl" condition="0"><stylesheet>icons/css/mango.css</stylesheet></action>
+            <action method="addCss" ifconfig="mango_settings/general/rtl" condition="0"><stylesheet>css/local.css</stylesheet></action>
+            <action method="addCss" ifconfig="mango_settings/general/rtl" condition="0"><stylesheet>css/responsive.css</stylesheet></action>
+            <action method="addCss" ifconfig="mango_settings/general/rtl" condition="0"><stylesheet>css/custom.css</stylesheet></action>
+
+            <action method="addCss" ifconfig="mango_settings/general/rtl" condition="1"><stylesheet>icons/css/mango-rtl.css</stylesheet></action>
+            <action method="addCss" ifconfig="mango_settings/general/rtl" condition="1"><stylesheet>css/local-rtl.css</stylesheet></action>
+            <action method="addCss" ifconfig="mango_settings/general/rtl" condition="1"><stylesheet>css/responsive-rtl.css</stylesheet></action>
+            <action method="addCss" ifconfig="mango_settings/general/rtl" condition="1"><stylesheet>css/custom-rtl.css</stylesheet></action>
+
+            <action method="removeItem" ifconfig="mango_settings/general/disable_responsive" condition="1"><type>skin_css</type><name>css/responsive.css</name></action>
+            <action method="removeItem" ifconfig="mango_settings/general/disable_responsive" condition="1"><type>skin_css</type><name>css/responsive-rtl.css</name></action>
+            <action method="addItem" ifconfig="mango_settings/general/disable_responsive" condition="1"><type>skin_js</type><name>js/non_responsive.js</name></action>
+
+            <action method="addCss"><stylesheet helper="mango/cssconfig/getDesignFile"/></action>
+            <action method="addCss"><stylesheet helper="mango/cssconfig/getSettingsFile"/></action>
+        </reference>
+        <reference name="header">
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="1"><template>page/html/header_type1.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="2"><template>page/html/header_type2.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="3"><template>page/html/header_type3.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="4"><template>page/html/header_type4.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="5"><template>page/html/header_type5.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="6"><template>page/html/header_type6.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="7"><template>page/html/header_type7.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="8"><template>page/html/header_type8.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="9"><template>page/html/header_type9.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="10"><template>page/html/header_type10.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="11"><template>page/html/header_type11.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/header/type" condition="12"><template>page/html/header_type12.phtml</template></action>
+            <block type="directory/currency" name="store_currency" template="page/switch/currency.phtml"/>
+            <block type="core/template" name="compare_link">
+                <action method="setTemplate" ifconfig="mango_settings/product_compare/show_link"><template>catalog/product/compare/compare_link.phtml</template></action>
+            </block>
+            <block type="checkout/cart_sidebar" name="minicart">
+                <action method="setTemplate"><template>checkout/cart/minicart.phtml</template></action>
+                <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/minicart/default.phtml</template></action>
+                <block type="core/text_list" name="minicart.extra_actions" as="extra_actions" translate="label" module="checkout">
+                    <label>Shopping Cart Cartheader Extra Actions</label>
+                </block>
+                <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals" template="checkout/cart/totals.phtml"/>
+            </block>
+        </reference>        
+        <reference name="top.links">
+            <remove name="checkout_cart_link"/>
+            <remove name="checkout_cart_link_custom"/>
+        </reference>
+        <reference name="page.title">
+            <action method="setTemplate" ifconfig="mango_settings/breadcrumb/type" condition="type_2"><template>page/html/page_title.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/breadcrumb/type" condition="type_3"><template>page/html/page_title.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <remove name="currency"/>
+            <remove name="left.newsletter"/>
+            <remove name="left.permanent.callout"/>
+        </reference>
+        <reference name="right">
+            <remove name="cart_sidebar"/>
+            <remove name="paypal.partner.right.logo"/>
+            <remove name="right.permanent.callout"/>            
+            <remove name="right.poll"/>
+            <remove name="right_currency"/>           
+        </reference>
+    </default>
+    <catalog_category_default>
+        <reference name="root">
+            <action method="setTemplate" ifconfig="mango_settings/category/page_layout" condition="one_column"><template>page/1column.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/category/page_layout" condition="two_column_left"><template>page/2columns-left.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/category/page_layout" condition="two_column_right"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/category/page_layout" condition="three_column"><template>page/3columns.phtml</template></action>
+        </reference>
+        <reference name="page.header">
+            <action method="setTemplate"><template>catalog/category/page_header.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <remove name="tags_popular"/>
+            <remove name="catalog.leftnav"/>
+            <block type="core/template" name="catalog.category" before="-" template="catalog/category/main_categories.phtml"/>
+        </reference>
+    </catalog_category_default>
+    
+    <catalog_category_layered>
+        <reference name="root">
+            <action method="setTemplate" ifconfig="mango_settings/category/page_layout" condition="one_column"><template>page/1column.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/category/page_layout" condition="two_column_left"><template>page/2columns-left.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/category/page_layout" condition="two_column_right"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/category/page_layout" condition="three_column"><template>page/3columns.phtml</template></action>
+        </reference>
+        <reference name="page.header">
+            <action method="setTemplate"><template>catalog/category/page_header.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <remove name="tags_popular"/>
+            <block type="catalog/navigation" name="catalog.category" before="-" template="catalog/category/category_nav.phtml"/>
+            <reference name="catalog.leftnav">
+                <action method="unsetChild"><child>category_filter</child></action>
+            </reference>
+        </reference>
+    </catalog_category_layered>
+    <catalog_product_view tranlate="label">
+         <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>                          </reference>
+         <reference name="page.title">
+            <action method="setTemplate" ifconfig="mango_settings/breadcrumb/type" condition="type_2"><template>page/html/product_page_title.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/breadcrumb/type" condition="type_3"><template>page/html/product_page_title.phtml</template></action>
+        </reference>
+         <reference name="product.info">
+            <action method="setTemplate" ifconfig="mango_settings/product_view/page_layout" condition="1"><template>catalog/product/view_type1.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/product_view/page_layout" condition="2"><template>catalog/product/view_type2.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/product_view/page_layout" condition="3"><template>catalog/product/view_type3.phtml</template></action>
+            <block type="catalog/product_list_related" name="catalog.product.related" before="-" template="catalog/product/list/related.phtml"/>
+         </reference>
+         <reference name="product.info.additional">
+             <action method="unsetChild"><name>product_tag_list</name></action>
+             <block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs">
+                <action method="setTemplate" ifconfig="mango_settings/product_view/page_layout" condition="1"><template>catalog/product/view/tabs.phtml</template></action>
+                <action method="setTemplate" ifconfig="mango_settings/product_view/page_layout" condition="2"><template>catalog/product/view/tabs.phtml</template></action>
+                <action method="setTemplate" ifconfig="mango_settings/product_view/page_layout" condition="3"><template>catalog/product/view/tabs_panel.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog"><alias>description_tabbed</alias><title>Description</title><block>catalog/product_view_description</block><template>catalog/product/view/description.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ><alias>additional_tabbed</alias><title>Additional</title><block>catalog/product_view_attributes</block><template>catalog/product/view/attributes.phtml</template></action>
+                <action method="addTab" translate="title" module="tag" ><alias>tags_tabbed</alias><title>Tags</title><block>tag/product_list</block><template>tag/list.phtml</template></action>
+                <action method="addTab" translate="title" module="review" ><alias>review_tabbed</alias><title>Reviews</title><block>review/product_view_list</block><template>review/product_info_review.phtml</template></action>
+            </block>
+         </reference>
+    </catalog_product_view>
+    <checkout_cart_index tranlate="label">
+        <reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbName">
+                <crumbName>Home</crumbName>
+                <params helper="mango/getHomeUrl" />
+            </action>
+            <action method="addCrumb" translate="label title crumbName">
+                <crumbName>Shopping Cart</crumbName>
+                <crumbInfo><label>Shopping Cart</label><title>Shopping Cart</title></crumbInfo>
+            </action>
+        </reference>
+    </checkout_cart_index>
+    <checkout_onepage_index translate="label">
+        <reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbName">
+                <crumbName>Home</crumbName>
+                <params helper="mango/getHomeUrl" />
+            </action>
+            <action method="addCrumb" translate="label title crumbName">
+                <crumbName>Checkout</crumbName>
+                <crumbInfo><label>Checkout</label><title>Checkout</title></crumbInfo>
+            </action>
+        </reference>
+    </checkout_onepage_index>
+    <checkout_multishipping>
+        <reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbName">
+                <crumbName>Home</crumbName>
+                <params helper="mango/getHomeUrl" />
+            </action>
+            <action method="addCrumb" translate="label title crumbName">
+                <crumbName>Multiple Checkout</crumbName>
+                <crumbInfo><label>Multiple Checkout</label><title>Multiple Checkout</title></crumbInfo>
+            </action>
+        </reference>
+    </checkout_multishipping>
+    <customer_account translate="label">
+        <reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbName">
+                <crumbName>Home</crumbName>
+                <params helper="mango/getHomeUrl" />
+            </action>
+            <action method="addCrumb" translate="label title crumbName">
+                <crumbName>My Account</crumbName>
+                <crumbInfo><label>My Account</label><title>My Account</title></crumbInfo>
+            </action>
+        </reference>
+    </customer_account>
+    <customer_account_login translate="label">
+        <reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbName">
+                <crumbName>Home</crumbName>
+                <params helper="mango/getHomeUrl" />
+            </action>
+            <action method="addCrumb" translate="label title crumbName">
+                <crumbName>Login</crumbName>
+                <crumbInfo><label>Login</label><title>Login</title></crumbInfo>
+            </action>
+        </reference>
+    </customer_account_login>
+    <customer_account_create translate="label">
+        <reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbName">
+                <crumbName>Home</crumbName>
+                <params helper="mango/getHomeUrl" />
+            </action>
+            <action method="addCrumb" translate="label title crumbName">
+                <crumbName>Register</crumbName>
+                <crumbInfo><label>Register</label><title>Register</title></crumbInfo>
+            </action>
+        </reference>
+    </customer_account_create>
+    <customer_account_forgotpassword translate="label">
+        <reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbName">
+                <crumbName>Home</crumbName>
+                <params helper="mango/getHomeUrl" />
+            </action>
+            <action method="addCrumb" translate="label title crumbName">
+                <crumbName>Forgot Password</crumbName>
+                <crumbInfo><label>Forgot Password</label><title>Forgot Password</title></crumbInfo>
+            </action>
+        </reference>
+    </customer_account_forgotpassword>
+    <customer_account_logoutsuccess translate="label">
+        <reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbName">
+                <crumbName>Home</crumbName>
+                <params helper="mango/getHomeUrl" />
+            </action>
+            <action method="addCrumb" translate="label title crumbName">
+                <crumbName>Logout</crumbName>
+                <crumbInfo><label>Logout</label><title>Logout</title></crumbInfo>
+            </action>
+        </reference>
+    </customer_account_logoutsuccess>
+    <contacts_index_index translate="label">
+        <label>Contact Us Form</label>        
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>            
+        </reference>
+        <reference name="head">
+            <action method="addExternalItem"><type>external_js</type><name>//maps.google.com/maps/api/js?sensor=false</name></action>
+        </reference>
+        <reference name="top.container">
+            <block type="core/template" name="google.map">
+                <action method="setTemplate" ifconfig="mango_settings/contacts/type" condition="1"><template>contacts/map.phtml</template></action>
+            </block>
+        </reference>
+        <reference name="contactForm">
+            <action method="setTemplate" ifconfig="mango_settings/contacts/type" condition="1"><template>contacts/form_type1.phtml</template></action>
+            <action method="setTemplate" ifconfig="mango_settings/contacts/type" condition="2"><template>contacts/form_type2.phtml</template></action>    
+            <action method="setTemplate" ifconfig="mango_settings/contacts/type" condition="3"><template>contacts/form_type3.phtml</template></action>    
+            <action method="setTemplate" ifconfig="mango_settings/contacts/type" condition="4"><template>contacts/form_type4.phtml</template></action>   
+            <block type="core/template" name="google.map">
+                <action method="setTemplate" ifconfig="mango_settings/contacts/type" condition="2"><template>contacts/map.phtml</template></action>
+                <action method="setTemplate" ifconfig="mango_settings/contacts/type" condition="3"><template>contacts/map.phtml</template></action>
+                <action method="setTemplate" ifconfig="mango_settings/contacts/type" condition="4"><template>contacts/map.phtml</template></action>
+            </block> 
+        </reference>                                                                         
+    </contacts_index_index>    
+    <cms_index_noroute tranlate="label">
+        <reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbName">
+                <crumbName>Home</crumbName>
+                <params helper="mango/getHomeUrl" />
+            </action>
+            <action method="addCrumb" translate="label title crumbName">
+                <crumbName>404 Page</crumbName>
+                <crumbInfo><label>404 Page</label><title>404 Page</title></crumbInfo>
+            </action>
+        </reference>
+    </cms_index_noroute>  
+	<cms_index_index>
+        <update handle="MAP_popup"/>
+        <reference name="head">
+            <action method="addJs" ifconfig="mango_settings/newsletter_popup/enabled"><script>smartwave/jquery/jquery.cookie.js</script></action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="newsletter/subscribe" name="newsletter_popup">
+                <action method="setTemplate" ifconfig="mango_settings/newsletter_popup/enabled"><template>newsletter/popup.phtml</template></action>
+            </block>
+        </reference>
+    </cms_index_index>    
+    <review_product_list>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </review_product_list>
+    <catalogsearch_result_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+    </catalogsearch_result_index>    
+</layout>

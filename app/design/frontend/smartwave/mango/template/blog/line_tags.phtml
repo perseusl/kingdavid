@@ -1,0 +1,9 @@
+    <?php
+    $tags = explode(',', $this->getPost()->getTags());
+    $i = 0;
+    foreach ($tags as $tag): ?>
+        <a href="<?php echo Mage::getUrl(Mage::helper('blog')->getRoute() . '/tag/' . urlencode($tag)) ?>"><?php echo $tag ?></a><?php if($i<count($tags)-1):?><span>,</span><?php endif; ?>
+        <?php $i++; ?>
+    <?php endforeach; ?>	
+
+

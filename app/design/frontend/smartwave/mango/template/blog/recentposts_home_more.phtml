@@ -1,0 +1,32 @@
+<div class="recent-posts">
+<?php if ($posts = $this->getRecent()): ?>
+<div class="owl-carousel posts-slider posts-sm-slider">
+<?php foreach ($posts as $post): ?>
+    <div class="item">
+        <?php
+            $post_date = Mage::helper('core')->formatDate($post->getCreatedTime(), 'long', false)
+        ?>
+        <div class="postWrapper">
+            <?php
+                if($post_image = $post->getImage()){
+            ?>
+            <div class="postBanner">
+                <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$post_image; ?>" alt=""/>
+            </div>
+            <?php
+                }
+            ?>
+            <div class="postTitle">                
+                <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>                
+            </div>
+            <div class="postDetails">
+                <span><?php echo $this->__('Posted at')?> <?php echo $post_date; ?></span>
+            </div>
+        </div>                                              
+    </div>
+<?php endforeach; ?>
+</div>
+<?php else: ?>
+<p class="note-msg"><?php echo $this->__('There are no posts.')?></p>
+<?php endif; ?>
+</div>

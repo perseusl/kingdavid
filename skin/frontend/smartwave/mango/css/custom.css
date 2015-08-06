@@ -1,0 +1,35 @@
+/**************************** CUSTOM STYLE **********************************/
+ul.menu > li:nth-child(3) > .nav-sublist-dropdown .mega-columns .block1 {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+ul.menu > li:nth-child(3) > .nav-sublist-dropdown .mega-columns .block1 .has-thumb-img {
+    padding-top: 45px;
+    padding-bottom: 45px;
+    border-right: 1px solid #ebebeb;
+}
+ul.menu > li:nth-child(3) > .nav-sublist-dropdown .mega-columns .block1 .has-thumb-img:last-child {
+    border-right: 0;
+}
+
+
+
+@media (max-width: 991px) {
+    #newsletter_popup {
+        width:auto !important;
+    }
+}
+@media (max-width: 767px) {
+    #newsletter_popup {
+        padding: 40px 15px;
+    }
+    #newsletter_popup h2 {
+        font-size: 26px;
+    }
+}
+@media (max-width: 479px){
+    #newsletter_popup button.button {
+        width: 80px;
+        margin-left: -80px;
+    }    
+}

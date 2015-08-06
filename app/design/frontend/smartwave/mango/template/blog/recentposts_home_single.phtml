@@ -1,0 +1,18 @@
+<?php if ($posts = $this->getRecent()): ?>    
+<?php foreach ($posts as $post): ?>
+<div class="clearfix">
+    <?php
+        if($post_image = $post->getImage()){
+    ?>
+    <div class="postBanner">
+        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$post_image; ?>" alt=""/>
+    </div>
+    <?php
+        }
+    ?>
+    <div class="postShortContent"><?php echo $post->getShortContent(); ?></div>
+</div>
+<?php endforeach;?>    
+<?php else: ?>
+<p class="note-msg"><?php echo $this->__('There are no posts.')?></p>
+<?php endif; ?>

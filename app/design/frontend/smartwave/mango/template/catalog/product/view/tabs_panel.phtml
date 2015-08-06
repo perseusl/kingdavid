@@ -1,0 +1,74 @@
+<?php
+    $helper = Mage::helper("mango");
+    $product_id = Mage::registry("current_product")->getId();
+?>
+<div class="panel-group product-tap-panel" id="productPanels" role="tablist" aria-multiselectable="true">
+    <?php $i = 0; ?>
+    <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+    <?php if($this->getChildHtml($_tab['alias'])): ?>
+    <div class="panel panel-default">        
+        <div class="panel-heading" role="tab" id="heading_<?php echo $_tab['alias'] ?>">
+            <h4 class="panel-title">                
+                <a class="collapsed" data-toggle="collapse" href="#collapse_<?php echo $_tab['alias']?>" data-parent="#productPanels" aria-expanded="false" aria-controls="collapse_<?php echo $_tab['alias']?>">
+                    <?php echo $_tab['title']?>
+                    <span class="panel-icon"></span>
+                </a>
+            </h4>
+        </div>                
+        <div id="collapse_<?php echo $_tab['alias']?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_<?php echo $_tab['alias'] ?>">
+            <div class="panel-body">
+                <?php echo $this->getChildHtml($_tab['alias']) ?>
+            </div>
+        </div>        
+    </div>
+    <?php endif; ?>
+    <?php endforeach; ?>
+    <?php
+        for($i=1;$i<=5;$i++){
+            $custom_tab = "attribute_tab_".$i;
+            if($helper->isEnabledTab("attribute", $custom_tab, $product_id)){
+    ?>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="heading_<?php echo $custom_tab ?>">
+            <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" href="#collapse_<?php echo $custom_tab ?>" data-parent="#productPanels" aria-expanded="false" aria-controls="collapse_<?php echo $custom_tab ?>">
+                    <?php echo $helper->getTabTitle("attribute", $custom_tab, $product_id)?>
+                    <span class="panel-icon"></span>
+                </a>
+            </h4>                
+        </div>
+        <div id="collapse_<?php echo $custom_tab?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_<?php echo $custom_tab ?>">
+            <div class="panel-body">
+                <?php echo $helper->getTabContents("attribute", $custom_tab, $product_id)?>
+            </div>
+        </div>
+    </div>            
+    <?php
+            }            
+        }
+    ?>
+    <?php
+        for($i=1;$i<=5;$i++){
+            $custom_tab = "static_block_tab_".$i;
+            if($helper->isEnabledTab("static_block", $custom_tab, $product_id)){
+    ?>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="heading_<?php echo $custom_tab ?>">
+            <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" href="#collapse_<?php echo $custom_tab ?>" data-parent="#productPanels" aria-expanded="false" aria-controls="collapse_<?php echo $custom_tab ?>">
+                    <?php echo $helper->getTabTitle("static_block", $custom_tab, $product_id)?>
+                    <span class="panel-icon"></span>
+                </a>
+            </h4>                
+        </div>
+        <div id="collapse_<?php echo $custom_tab?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_<?php echo $custom_tab ?>">
+            <div class="panel-body">
+                <?php echo $helper->getTabContents("static_block", $custom_tab, $product_id)?>
+            </div>
+        </div>
+    </div>
+    <?php
+            }
+        }
+    ?>
+</div>

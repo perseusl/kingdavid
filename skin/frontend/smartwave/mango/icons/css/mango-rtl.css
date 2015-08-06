@@ -1,0 +1,114 @@
+@font-face {
+  font-family: 'mango';
+  src: url('../font/mango.eot?55204956');
+  src: url('../font/mango.eot?55204956#iefix') format('embedded-opentype'),
+       url('../font/mango.woff?55204956') format('woff'),
+       url('../font/mango.ttf?55204956') format('truetype'),
+       url('../font/mango.svg?55204956#mango') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'mango';
+    src: url('../font/mango.svg?55204956#mango') format('svg');
+  }
+}
+*/
+
+[class^="icon-mango-"]:before, [class*=" icon-mango-"]:before {
+    font-family: "mango";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-mango-search:before { content: '\e900'; } /* '' */
+.icon-mango-phone:before { content: '\e901'; } /* '' */
+.icon-mango-cart:before { content: '\e902'; } /* '' */
+.icon-mango-angle-down:before { content: '\e903'; } /* '' */
+.icon-mango-angle-left:before { content: '\e904'; } /* '' */
+.icon-mango-angle-right:before { content: '\e905'; } /* '' */
+.icon-mango-angle-up:before { content: '\e906'; } /* '' */
+.icon-mango-close:before { content: '\e907'; } /* '' */
+.icon-mango-heart:before { content: '\e908'; } /* '' */
+.icon-mango-compare:before { content: '\e909'; } /* '' */
+.icon-mango-star:before { content: '\e90a'; } /* '' */
+.icon-mango-star-o:before { content: '\e90b'; } /* '' */
+.icon-mango-free-shipping:before { content: '\e90c'; } /* '' */
+.icon-mango-heart-o:before { content: '\e90d'; } /* '' */
+.icon-mango-compare-alt:before { content: '\e90e'; } /* '' */
+.icon-mango-nav-icon:before { content: '\e90f'; } /* '' */
+.icon-mango-plus:before { content: '\e910'; } /* '' */
+.icon-mango-minus:before { content: '\e911'; } /* '' */
+.icon-mango-angle-double-right:before { content: '\e912'; } /* '' */
+.icon-mango-angle-double-left:before { content: '\e913'; } /* '' */
+.icon-mango-angle-double-up:before { content: '\e914'; } /* '' */
+.icon-mango-angle-double-down:before { content: '\e915'; } /* '' */
+.icon-mango-grid:before { content: '\e916'; } /* '' */
+.icon-mango-list:before { content: '\e917'; } /* '' */
+.icon-mango-mark:before { content: '\e918'; } /* '' */
+.icon-mango-arrow-up:before { content: '\e919'; } /* '' */
+.icon-mango-arrow-down:before { content: '\e91a'; } /* '' */
+.icon-mango-plus-alt:before { content: '\e91b'; } /* '' */
+.icon-mango-minus-alt:before { content: '\e91c'; } /* '' */
+.icon-mango-arrow-left:before { content: '\e91d'; } /* '' */
+.icon-mango-arrow-right:before { content: '\e91e'; } /* '' */
+.icon-mango-link:before { content: '\e91f'; } /* '' */
+.icon-mango-cut:before { content: '\e920'; } /* '' */
+.icon-mango-desktop:before { content: '\e921'; } /* '' */
+.icon-mango-calculator:before { content: '\e922'; } /* '' */
+.icon-mango-plus-weak:before { content: '\e923'; } /* '' */
+.icon-mango-minus-weak:before { content: '\e924'; } /* '' */
+.icon-mango-down-dir:before { content: '\e925'; } /* '' */
+.icon-mango-up-dir:before { content: '\e926'; } /* '' */
+.icon-mango-right-dir:before { content: '\e927'; } /* '' */
+.icon-mango-left-dir:before { content: '\e928'; } /* '' */
+.icon-mango-pencil:before { content: '\e929'; } /* '' */
+.icon-mango-glyph:before { content: '\e92a'; } /* '' */
+.icon-mango-close-alt:before { content: '\e930'; } /* '' */
+.icon-mango-quickview:before { content: '\e931'; } /* '' */
+.icon-mango-user:before { content: '\e932'; } /* '' */
+.icon-mango-users:before { content: '\e933'; } /* '' */
+.icon-mango-facebook:before { content: '\e980'; } /* '' */
+.icon-mango-gplus:before { content: '\e981'; } /* '' */
+.icon-mango-twitter:before { content: '\e982'; } /* '' */
+.icon-mango-youtube:before { content: '\e983'; } /* '' */
+.icon-mango-linkedin:before { content: '\e984'; } /* '' */
+.icon-mango-instagramm:before { content: '\e985'; } /* '' */
+.icon-mango-dribbble:before { content: '\e986'; } /* '' */
+.icon-mango-pinterest:before { content: '\e987'; } /* '' */
+.icon-mango-skype:before { content: '\e988'; } /* '' */
+.icon-mango-mail-alt:before { content: '\e989'; } /* '' */
+.icon-mango-compact:before { content: '\e98a'; } /* '' */

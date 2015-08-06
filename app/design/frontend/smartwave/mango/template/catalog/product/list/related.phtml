@@ -1,0 +1,235 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php 
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();        
+    $aspect_ratio = Mage::getStoreConfig("mango_settings/category/aspect_ratio",$code);
+    $ratio_width = Mage::getStoreConfig("mango_settings/category/ratio_width",$code);
+    $ratio_height = Mage::getStoreConfig("mango_settings/category/ratio_height",$code);
+?>
+<?php if($this->getItems()->getSize()): ?>
+<div class="block-related">    
+    <div class="block-title">
+        <h2 class="title-underblock"><span class="theme-bd-color"><?php echo $this->__('Related Products') ?></span></h2>
+    </div>
+    <div class="block-content type2">
+        <p class="block-subtitle"><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a></p>
+        <div class="owl-products owl-carousel">
+        <?php foreach($this->getItems() as $_item): ?>
+		<?php
+			$product = Mage::getModel('catalog/product')->load($_item->getId());
+		?>
+            <div class="item">
+                <div class="item-area">
+                    <div class="product-image-area">
+                        <div class="actions">
+                            <?php if (Mage::helper('wishlist')->isAllow()) : ?>
+                            <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtolinks/enablecategory", $code)):?>javascript:ajaxWishlist('<?php echo Mage::helper('wishlist')->getAddUrl($_item) ?>','<?php echo $_item->getId()?>');<?php else: ?><?php echo Mage::helper('wishlist')->getAddUrl($_item) ?><?php endif; ?>" class="addtowishlist" title="<?php echo $this->__('Add to Wishlist') ?>"><i class="icon-mango-heart"></i></a>
+                            <?php endif; ?>
+                            <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
+                                <?php if (!$_item->getRequiredOptions()): ?>
+                                    <div><input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" /></div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                        <?php if( !Mage::getStoreConfig("mango_settings/category/hovereffect", $code) ): ?>
+                            <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>" class="product-image">
+                                <img src="<?php if($aspect_ratio):?><?php echo Mage::helper('catalog/image')->init($_item, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo Mage::helper('catalog/image')->init($_item, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>"/>
+                            </a>
+                        <?php elseif(Mage::getStoreConfig("mango_settings/category/hovereffect", $code) == "alternative"): ?>
+                            <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>" class="product-image">
+                                <img class="defaultImage" src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_item, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>"/>
+                                <img class="hoverImage" src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_item, 'thumbnail'), null, true) ?>"/>
+                            </a>
+                        <?php elseif(Mage::getStoreConfig("mango_settings/category/hovereffect", $code) == "gallery"): ?>
+                            <?php
+                                $gallery_images = $product->getMediaGalleryImages();
+                            ?>
+                            <?php if(count($gallery_images) < 1): ?>
+                            <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>" class="product-image">
+                                <img src="<?php if($aspect_ratio):?><?php echo Mage::helper('catalog/image')->init($_item, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo Mage::helper('catalog/image')->init($_item, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>"/>
+                            </a>
+                            <?php else: ?>
+                            <div class="owl-product-image-gallery owl-carousel">
+                            <?php foreach ($gallery_images as $image): ?>
+                            <?php // If no image, skip 
+                                if ($image->getFile() == NULL)
+                                    continue;
+                            ?>
+                                <div class="item">
+                                    <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($image->getLabel()) ?>" class="product-image">
+                                        <img src="<?php if($aspect_ratio):?><?php echo Mage::helper('catalog/image')->init($_item, 'thumbnail', $image->getFile())->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo Mage::helper('catalog/image')->init($_item, 'thumbnail', $image->getFile())->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->escapeHtml($image->getLabel()) ?>"/>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
+                            </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        <?php                         
+                            $sale_label = false;
+                            // Get the Special Price
+                            $specialprice = $product->getSpecialPrice(); 
+                            // Get the Special Price FROM date
+                            $specialPriceFromDate = $product->getSpecialFromDate();
+                            // Get the Special Price TO date
+                            $specialPriceToDate = $product->getSpecialToDate();
+                            // Get Current date
+                            $today =  time();
+                         
+                            if ($specialprice){
+                                if($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)){
+                                    if(Mage::getStoreConfig("mango_settings/product_label/sale", $code)){
+                                        $sale_label = true;
+                        ?>
+                                    <div class="product-label" style="left: 7px;"><span class="sale-product-icon"><?php echo Mage::getStoreConfig("mango_settings/product_label/sale_label_text", $code);?></span></div>
+                        <?php       
+                                    }
+                                }
+                            }
+                        ?>
+                        <?php
+                            $now = date("Y-m-d");
+                            $newsFrom= substr($_item->getData('news_from_date'),0,10);
+                            $newsTo=  substr($_item->getData('news_to_date'),0,10);
+                            if ($newsTo != '' || $newsFrom != ''){
+                                if (($newsTo != '' && $newsFrom != '' && $now>=$newsFrom && $now<=$newsTo) || ($newsTo == '' && $now >=$newsFrom) || ($newsFrom == '' && $now<=$newsTo))
+                                {
+                                    if(Mage::getStoreConfig("mango_settings/product_label/new", $code)){
+                            ?> 
+                                    <div class="product-label" style="right: 7px;"><span class="new-product-icon"><?php echo Mage::getStoreConfig("mango_settings/product_label/new_label_text", $code);?></span></div>
+                            <?php 
+                                    }
+                                }
+                            }
+                        ?>
+                    </div>
+                    <div class="details-area">
+                        <h2 class="product-name"><a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a></h2>
+                        <?php 
+                        if(Mage::helper('catalog')->isModuleEnabled('Mage_Review')):
+                        if($_item->getRatingSummary()): 
+                        ?>
+                        <?php 
+                            $review_html = $this->getReviewsSummaryHtml($_item, 'short');
+                            if($review_html){
+                                echo $review_html;
+                            }else{
+                        ?>
+                            <div class="ratings">
+                                <div class="rating-box">
+                                    <div class="rating" style="width:0"></div>
+                                </div>
+                            </div>
+                        <?php                            
+                            }
+                        ?>
+                        <?php else: ?>
+                            <div class="ratings">
+                                <div class="rating-box">
+                                    <div class="rating" style="width:0"></div>
+                                </div>
+                            </div>
+                        <?php 
+                        endif; 
+                        endif;
+                        ?>
+                        <?php echo $this->getPriceHtml($_item, true) ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>            
+        </div>        
+        <script type="text/javascript">decorateList('block-related', 'none-recursive')</script>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+    $$('.related-checkbox').each(function(elem){        
+        Event.observe(elem, 'click', addRelatedToProduct)
+    });
+
+    var relatedProductsCheckFlag = false;
+    function selectAllRelated(txt){
+        if (relatedProductsCheckFlag == false) {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = true;
+            });
+            relatedProductsCheckFlag = true;
+            txt.innerHTML="<?php echo $this->__('unselect all') ?>";
+        } else {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = false;
+            });
+            relatedProductsCheckFlag = false;
+            txt.innerHTML="<?php echo $this->__('select all') ?>";
+        }
+        addRelatedToProduct();
+    }
+
+    function addRelatedToProduct(){                
+        var checkboxes = $$('.related-checkbox');
+        var values = [];
+        for(var i=0;i<checkboxes.length;i++){
+            if(checkboxes[i].checked) values.push(checkboxes[i].value);
+        }
+        if($('related-products-field')){
+            $('related-products-field').value = values.join(',');
+        }
+    }
+    jQuery(window).load(function(){
+        jQuery(".block-related .owl-products").owlCarousel({
+            loop: false,
+            margin: 25,
+            responsiveClass: true, 
+            nav: false,
+            dots: false,
+            responsive: {
+                0: { items: 1 },
+                480: { items: 2},
+                768: { items: 3 },
+                992: { items: 4 },
+                1200: {items: 5}
+            }
+        }); 
+        var owl_product_image = jQuery(".block-related .owl-product-image-gallery");
+        owl_product_image.owlCarousel({
+            items: 1,
+            loop: false,
+            margin: 2,
+            lazyLoad: true,
+            responsiveClass: true,
+            animateOut: "fadeOut",
+            nav: true,
+            navText:["",""],
+            dots: false,
+            mouseDrag: false,
+            touchDrag: false
+        });
+    });    
+    //]]>
+    </script>
+</div>
+<?php endif ?>

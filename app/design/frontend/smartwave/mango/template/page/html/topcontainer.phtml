@@ -1,0 +1,14 @@
+<?php
+$store = Mage::app()->getStore();
+$code  = $store->getCode();
+echo $this->getChildHtml("page.header");
+$breadcrumbs = $this->getChildHtml("breadcrumbs");
+if ($breadcrumbs) :
+?>
+<div class="breadcrumbs-wrapper <?php echo Mage::getStoreConfig('mango_settings/breadcrumb/type')?>">
+    <?php echo $this->getChildHtml("page.title"); ?>
+    <div class="<?php if(Mage::getStoreConfig("mango_settings/general/layout", $code) == "full_width"): ?>container-fluid<?php else: ?>container<?php endif;?>">        
+        <?php echo $breadcrumbs; ?>        
+    </div>
+</div>
+<?php endif; ?>

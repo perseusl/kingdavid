@@ -1,0 +1,20 @@
+<?php $menuHelper = Mage::helper('megamenu'); ?>
+<div class="mobile-nav side-block container">
+    <div class="close-mobile-nav close-block">Navigation</div>
+    <div class="menu-all-pages-container">
+        <ul class="menu">
+            <?php echo $menuHelper->getMobileMenuContent(); ?>
+        </ul>
+    </div>
+<?php
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+    $custom_block_id = Mage::getStoreConfig('mango_settings/header/mobile_header_custom_block', $code);
+    $custom_block = "";
+    if($custom_block_id){
+        $custom_block = $this->getLayout()->createBlock('cms/block')->setBlockId($custom_block_id)->toHtml();
+    }
+    echo $custom_block;
+?>
+</div>
+<div class="mobile-nav-overlay"></div>

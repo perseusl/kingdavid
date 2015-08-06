@@ -1,0 +1,14 @@
+<?php $menuHelper = Mage::helper('megamenu'); ?>
+<?php $menuData = $menuHelper->getMenuData(); extract($menuData); ?>
+<div class="main-nav">
+    <ul class="menu">
+        <?php echo $menuHelper->getMenuContent(); ?>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    var SW_MENU_POPUP_WIDTH = <?php echo $_popupWidth; ?>;
+    jQuery(function($){
+        $(".menu_thumb_img").parent().addClass("has-thumb-img");
+    });
+</script>

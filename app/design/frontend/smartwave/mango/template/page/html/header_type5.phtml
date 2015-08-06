@@ -1,0 +1,70 @@
+<?php echo $this->getChildHtml('sticky.nav') ?>
+<?php
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+    $custom_block_id = Mage::getStoreConfig('mango_settings/header/static_block', $code);
+    $custom_block_id_2 = Mage::getStoreConfig('mango_settings/header/static_block_2', $code);
+    $custom_block_id_3 = Mage::getStoreConfig('mango_settings/header/static_block_3', $code);
+    $store_language = $this->getChildHtml('store_language');
+    $store_currency = $this->getChildHtml('store_currency');
+    $compare_link = $this->getChildHtml('compare_link');
+    $custom_block = "";
+    if($custom_block_id){
+        $custom_block = $this->getLayout()->createBlock('cms/block')->setBlockId($custom_block_id)->toHtml();
+    }
+    $custom_block_2 = "";
+    if($custom_block_id_2){
+        $custom_block_2 = $this->getLayout()->createBlock('cms/block')->setBlockId($custom_block_id_2)->toHtml();
+    }
+    $custom_block_3 = "";
+    if($custom_block_id_3){
+        $custom_block_3 = $this->getLayout()->createBlock('cms/block')->setBlockId($custom_block_id_3)->toHtml();
+    }
+?>
+<div class="header-container type5">
+    <div class="header">
+        <div class="container-fluid">
+            <?php echo $this->getChildHtml('topMenu') ?>
+            <a href="<?php echo $this->getUrl(''); ?>" title="<?php echo $this->getLogoAlt(); ?>" class="logo"><img src="<?php echo $this->getLogoSrc(); ?>" alt="<?php echo $this->getLogoAlt(); ?>" /></a>
+            <div class="header-left">
+                <?php 
+                    echo $store_language;
+                    if($store_language){
+                        echo '<span class="split"></span>';
+                    }
+                    echo $store_currency;
+                    if($store_currency){
+                        echo '<span class="split"></span>';
+                    }
+                    echo ($custom_block)?'<div class="custom-block">'.$custom_block.'</div>':'';
+                ?>
+                <div class="top-links-area">
+                    <div class="top-links-icon"><a href="javascript:void(0)"><?php echo Mage::getStoreConfig('mango_settings/header/toplinks_text', $code); ?></a></div>
+                    <?php echo $this->getChildHtml('topLinks'); ?>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container-fluid">
+                <div class="header-bottom-left">
+                <?php
+                    echo ($custom_block_2)?'<div class="custom-block">'.$custom_block_2.'</div>':'';
+                ?>
+                </div>
+                <?php echo $this->getChildHtml('topSearch'); ?>
+                <div class="header-bottom-right">
+                    <div class="menu-icon"><a href="javascript:void(0)"><i class="icon-mango-nav-icon"></i></a></div>
+                <?php
+                    echo $compare_link;
+                    if($compare_link){
+                        echo '<span class="split"></span>';
+                    }
+                ?>
+                <?php echo $this->getChildHtml('minicart'); ?>
+                </div>
+                <?php echo $this->getChildHtml("demo_header_tooltip"); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo $this->getChildHtml('mobile.nav') ?>

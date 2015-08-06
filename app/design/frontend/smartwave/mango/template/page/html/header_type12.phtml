@@ -1,0 +1,63 @@
+<?php echo $this->getChildHtml('sticky.nav') ?>
+<?php
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+    $custom_block_id = Mage::getStoreConfig('mango_settings/header/static_block', $code);
+    $store_language = $this->getChildHtml('store_language');
+    $store_currency = $this->getChildHtml('store_currency');
+    $compare_link = $this->getChildHtml('compare_link');
+    $custom_block = "";
+    if($custom_block_id){
+        $custom_block = $this->getLayout()->createBlock('cms/block')->setBlockId($custom_block_id)->toHtml();
+    }
+?>
+<div class="header-container type12">
+    <div class="header">
+        <div class="container">
+            <a href="<?php echo $this->getUrl(''); ?>" title="<?php echo $this->getLogoAlt(); ?>" class="logo"><img src="<?php echo $this->getLogoSrc(); ?>" alt="<?php echo $this->getLogoAlt(); ?>" /></a>
+            <?php
+                echo ($custom_block)?'<div class="custom-block">'.$custom_block.'</div>':'';
+            ?>
+            <div class="header-right">
+                <div class="header-right-top">
+                    <div class="search-area">
+                        <a href="javascript:void(0);" class="search-icon"><i class="icon-mango-search"></i><span><?php echo $this->__('Search'); ?></span></a>
+                        <?php echo $this->getChildHtml('topSearch'); ?>
+                    </div>
+                    <span class="split"></span>
+                    <div class="top-links-area">
+                        <div class="top-links-icon"><a href="javascript:void(0)"><?php echo Mage::getStoreConfig('mango_settings/header/toplinks_text', $code); ?></a></div>
+                        <?php echo $this->getChildHtml('topLinks'); ?>
+                    </div>
+                    <?php 
+                        if($store_language || $store_currency){
+                            echo '<span class="split"></span>';
+                        }
+                        echo $store_language;
+                        if($store_currency){
+                            echo '<span class="split"></span>';
+                        }
+                        echo $store_currency;
+                    ?>
+                </div>
+                <div class="header-right-bottom">
+                    <div class="menu-icon"><a href="javascript:void(0)"><i class="icon-mango-nav-icon"></i></a></div>
+                    <?php
+                        echo $compare_link;
+                        if($compare_link){
+                            echo '<span class="split"></span>';
+                        }
+                        echo $this->getChildHtml('minicart');
+                    ?>
+                    <?php echo $this->getChildHtml("demo_header_tooltip"); ?>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <?php echo $this->getChildHtml('topMenu') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo $this->getChildHtml('mobile.nav') ?>

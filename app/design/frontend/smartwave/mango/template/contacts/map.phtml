@@ -1,0 +1,56 @@
+<!--google map-->
+<?php 
+$store = Mage::app()->getStore();
+$code  = $store->getCode();
+$_lat = Mage::getStoreConfig('mango_settings/contacts/latitude', $code);
+$_lng = Mage::getStoreConfig('mango_settings/contacts/longitude', $code);
+$_zoom = Mage::getStoreConfig('mango_settings/contacts/zoom', $code);
+$_pin = Mage::getStoreConfig('mango_settings/contacts/marker_image', $code);
+if (!$_pin) {
+    $_pin = 'default/pin.png';
+} 
+$_contact_popup = Mage::getStoreConfig('mango_settings/contacts/popup', $code);
+?>
+
+<div id="map"></div>
+<script>
+    /* Map */
+    (function () {
+        "use strict";
+        
+        if (document.getElementById("map")) {
+            var locations = [
+                ['<?php echo $_contact_popup?>', <?php echo $_lat ?>, <?php echo $_lng ?>, 9]
+            ];
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: <?php echo $_zoom ?>,
+                center: new google.maps.LatLng(<?php echo $_lat ?>, <?php echo $_lng ?>),
+                scrollwheel: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {  
+              marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map,
+                animation: google.maps.Animation.DROP,
+                icon: "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'wysiwyg/mango/contacts/'.$_pin; ?>",
+              });
+
+              google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                  infowindow.setContent(locations[i][0]);
+                  infowindow.open(map, marker);
+                }
+              })(marker, i));
+            }
+        }
+
+    }());
+</script>

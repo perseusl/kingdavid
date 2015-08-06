@@ -1,0 +1,47 @@
+<?php
+/**
+ * zeonsolutions inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.zeonsolutions.com/shop/license-community.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * This package designed for Magento Community edition
+ * =================================================================
+ * zeonsolutions does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * zeonsolutions does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   design
+ * @package    base_default
+ * @version    0.0.1
+ * @copyright  @copyright Copyright (c) 2013 zeonsolutions.Inc. (http://www.zeonsolutions.com)
+ * @license    http://www.zeonsolutions.com/shop/license-community.txt
+ */
+?>
+<?php $_manufacturersCollection = $this->getManufacturersCollection(); ?>
+<?php $_columnCount = 8; ?>
+<div>
+    <div class="page-title">
+        <h1><?php echo $this->__('Manufacturers') ?></h1>
+    </div>
+    <?php if (count($_manufacturersCollection)): ?>
+        <div class="row">
+        <?php foreach ($_manufacturersCollection as $_manufacturer): ?>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <div class="manufacturer-item">
+                    <a href="<?php echo $this->getUrl('manufacturers' . '/' . $_manufacturer->getIdentifier()) ?>" title="<?php echo $_manufacturer->getManufacturer() ?>" class="manufacturer-img"><img alt="<?php echo $_manufacturer->getManufacturerLogo() ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'manufacturer' . '/' . $_manufacturer->getManufacturerLogo() ?>" width="auto" height="70"></a>
+                    <h2 class="manufacturer-name"><a href="<?php echo $this->getUrl('manufacturers' . '/' . $_manufacturer->getIdentifier()) ?>" title="<?php echo $_manufacturer->getManufacturer() ?>"><?php echo $_manufacturer->getManufacturer(); ?></a></h2>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div>

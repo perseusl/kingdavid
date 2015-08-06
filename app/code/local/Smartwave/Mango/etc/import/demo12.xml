@@ -1,0 +1,350 @@
+<root>
+<config>
+    <web>
+        <default>
+            <cms_home_page>mango_demo12</cms_home_page>
+            <cms_no_route>no-route-2</cms_no_route>
+        </default>
+    </web>
+    <design>
+        <package>
+            <name>smartwave</name>
+        </package>
+        <theme>
+            <default>mango</default>
+        </theme>
+        <header>
+            <logo_src>images/logo-purple-black.png</logo_src>
+        </header>
+    </design>
+    <cms>
+        <wysiwyg>
+            <enabled>hidden</enabled>
+        </wysiwyg>
+    </cms>
+    <catalog>
+        <layered_navigation>
+            <display_product_count>0</display_product_count>
+        </layered_navigation>
+    </catalog>
+    <configswatches>
+        <product_detail_dimensions>
+            <width>37</width>
+            <height>37</height>
+        </product_detail_dimensions>
+        <layered_nav_dimensions>
+            <width>37</width>
+            <height>37</height>
+        </layered_nav_dimensions>
+    </configswatches>
+    <mango_design>
+        <basic>
+            <theme_color>#901794</theme_color>
+        </basic>
+        <colors>
+            <custom>0</custom>
+            <text_color></text_color>
+            <link_color></link_color>
+            <link_hover_color></link_hover_color>
+            <button_bg_color></button_bg_color>
+            <button_text_color></button_text_color>
+            <button_hover_bg_color></button_hover_bg_color>
+            <button_hover_text_color></button_hover_text_color>
+            <addtocart_color></addtocart_color>
+            <addtocart_bg_color></addtocart_bg_color>
+            <addtocart_hover_color></addtocart_hover_color>
+            <addtocart_hover_bg_color></addtocart_hover_bg_color>
+            <addtowishlist_color></addtowishlist_color>
+            <addtowishlist_bg_color></addtowishlist_bg_color>
+            <addtowishlist_hover_color></addtowishlist_hover_color>
+            <addtowishlist_hover_bg_color></addtowishlist_hover_bg_color>
+            <addtocompare_color></addtocompare_color>
+            <addtocompare_bg_color></addtocompare_bg_color>
+            <addtocompare_hover_color></addtocompare_hover_color>
+            <addtocompare_hover_bg_color></addtocompare_hover_bg_color>
+            <quickview_color></quickview_color>
+            <quickview_bg_color></quickview_bg_color>
+            <quickview_hover_color></quickview_hover_color>
+            <quickview_hover_bg_color></quickview_hover_bg_color>
+            <new_label_bg_color></new_label_bg_color>
+            <new_label_text_color></new_label_text_color>
+            <sale_label_bg_color></sale_label_bg_color>
+            <sale_label_text_color></sale_label_text_color>
+            <cat_label1_bg_color></cat_label1_bg_color>
+            <cat_label1_text_color></cat_label1_text_color>
+            <cat_label2_bg_color></cat_label2_bg_color>
+            <cat_label2_text_color></cat_label2_text_color>
+        </colors>
+        <font>
+            <custom>0</custom>
+            <font_size>0</font_size>
+            <primary_font_family_group>custom</primary_font_family_group>
+            <primary_font_family_custom></primary_font_family_custom>
+        </font>
+        <header>
+            <custom>0</custom>
+            <header_bgcolor></header_bgcolor>
+            <header_bg_image></header_bg_image>
+            <header_bordercolor></header_bordercolor>
+            <header_textcolor></header_textcolor>
+            <header_linkcolor></header_linkcolor>
+            <header_top_links_bgcolor></header_top_links_bgcolor>
+            <header_top_links_color></header_top_links_color>            
+            <header_menu_bgcolor></header_menu_bgcolor>
+            <header_menu_color></header_menu_color>
+            <header_menu_hover_bgcolor></header_menu_hover_bgcolor>
+            <header_menu_hover_color></header_menu_hover_color>
+            <header_menu_megamenu_bgcolor></header_menu_megamenu_bgcolor>
+            <header_menu_megamenu_bordercolor></header_menu_megamenu_bordercolor>
+            <header_menu_megamenu_color></header_menu_megamenu_color>
+            <header_menu_classicmenu_bgcolor></header_menu_classicmenu_bgcolor>
+            <header_menu_classicmenu_color></header_menu_classicmenu_color>
+            <header_menu_classicmenu_hover_bgcolor></header_menu_classicmenu_hover_bgcolor>
+            <header_menu_classicmenu_hover_color></header_menu_classicmenu_hover_color>
+            <header_search_bgcolor></header_search_bgcolor>
+            <header_search_color></header_search_color>
+            <header_search_text_color></header_search_text_color>
+            <header_search_bordercolor></header_search_bordercolor>            
+            <header_minicart_bgcolor></header_minicart_bgcolor>
+            <header_minicart_color></header_minicart_color>
+            <header_minicart_icon_color></header_minicart_icon_color>
+        </header>
+        <footer>
+            <custom>1</custom>
+            <footer_top_bgcolor></footer_top_bgcolor>
+            <footer_top_color></footer_top_color>
+            <footer_top_link_color></footer_top_link_color>
+            <footer_top_link_hover_color></footer_top_link_hover_color>
+            <footer_top_title_color></footer_top_title_color>
+            <footer_middle_bgcolor></footer_middle_bgcolor>
+            <footer_middle_color></footer_middle_color>
+            <footer_middle_link_color>#821686</footer_middle_link_color>
+            <footer_middle_link_hover_color></footer_middle_link_hover_color>
+            <footer_middle_menu_link_color></footer_middle_menu_link_color>
+            <footer_middle_menu_link_hover_color>#821686</footer_middle_menu_link_hover_color>
+            <footer_middle_title_color></footer_middle_title_color>
+            <footer_middle_links_icon_color></footer_middle_links_icon_color>
+            <footer_bottom_bgcolor></footer_bottom_bgcolor>
+            <footer_bottom_color></footer_bottom_color>
+            <footer_bottom_link_color>#821686</footer_bottom_link_color>
+            <footer_bottom_link_hover_color></footer_bottom_link_hover_color>
+            <footer_bottom_menu_link_color></footer_bottom_menu_link_color>
+            <footer_bottom_menu_link_hover_color>#821686</footer_bottom_menu_link_hover_color>
+            <footer_totop_bgcolor></footer_totop_bgcolor>
+            <footer_totop_hover_bgcolor></footer_totop_hover_bgcolor>
+            <footer_totop_color></footer_totop_color>
+            <footer_totop_hover_color></footer_totop_hover_color>
+        </footer>
+        <breadcrumb>
+            <custom>0</custom>
+            <breadcrumbs_bg_color></breadcrumbs_bg_color>
+            <breadcrumbs_bg_image></breadcrumbs_bg_image>
+            <breadcrumbs_title_color></breadcrumbs_title_color>
+            <breadcrumbs_color></breadcrumbs_color>
+            <breadcrumbs_links_color></breadcrumbs_links_color>
+            <breadcrumbs_links_hover_color></breadcrumbs_links_hover_color>
+        </breadcrumb>
+        <page>
+            <custom>0</custom>
+            <page_bgcolor></page_bgcolor>
+            <page_bg_image></page_bg_image>
+            <page_custom_style></page_custom_style>
+        </page>
+        <main>
+            <custom>0</custom>
+            <main_bgcolor></main_bgcolor>
+            <main_bg_image></main_bg_image>
+            <main_custom_style></main_custom_style>
+        </main>
+    </mango_design>
+    <mango_settings>
+        <general>
+            <boxed>wide</boxed>
+            <out_of_box_color></out_of_box_color>
+            <out_of_box_image></out_of_box_image>
+            <rtl>0</rtl>
+            <layout>0</layout>
+        </general>
+        <header>
+            <type>6</type>
+            <full_width_type_6>0</full_width_type_6>
+            <language_flag>1</language_flag>
+            <toplinks_text><![CDATA[<i class="icon-mango-user"></i> Links <i class="icon-mango-angle-down" style="color: #6e6e6e;"></i>]]></toplinks_text>
+            <static_block>mango_custom_block_for_header</static_block>
+            <static_block_2>mango_header_social_icons</static_block_2>
+            <static_block_3>mango_header_box</static_block_3>
+            <sticky_header>1</sticky_header>
+            <mobile_header_custom_block>mango_mobile_header_custom_block</mobile_header_custom_block>
+        </header>
+        <footer>
+            <footer_top_enabled>1</footer_top_enabled>
+            <footer_top_column_1>custom</footer_top_column_1>
+            <footer_top_column_1_custom>mango_footer_top_1</footer_top_column_1_custom>
+            <footer_top_column_1_size_md>4</footer_top_column_1_size_md>
+            <footer_top_column_1_size_sm>4</footer_top_column_1_size_sm>
+            <footer_top_column_2>custom</footer_top_column_2>
+            <footer_top_column_2_custom>mango_footer_top_2</footer_top_column_2_custom>
+            <footer_top_column_2_size_md>4</footer_top_column_2_size_md>
+            <footer_top_column_2_size_sm>4</footer_top_column_2_size_sm>
+            <footer_top_column_3>custom</footer_top_column_3>
+            <footer_top_column_3_custom>mango_footer_top_3</footer_top_column_3_custom>
+            <footer_top_column_3_size_md>4</footer_top_column_3_size_md>
+            <footer_top_column_3_size_sm>4</footer_top_column_3_size_sm>
+            <footer_top_column_4>0</footer_top_column_4>
+            <footer_top_column_4_custom></footer_top_column_4_custom>
+            <footer_top_column_4_size_md>4</footer_top_column_4_size_md>
+            <footer_top_column_4_size_sm>4</footer_top_column_4_size_sm>
+            <footer_top_column_5>0</footer_top_column_5>
+            <footer_top_column_5_custom></footer_top_column_5_custom>
+            <footer_top_column_5_size_md>4</footer_top_column_5_size_md>
+            <footer_top_column_5_size_sm>4</footer_top_column_5_size_sm>
+            <footer_top_column_6>0</footer_top_column_6>
+            <footer_top_column_6_custom></footer_top_column_6_custom>
+            <footer_top_column_6_size_md>4</footer_top_column_6_size_md>
+            <footer_top_column_6_size_sm>4</footer_top_column_6_size_sm>
+            <footer_middle_enabled>1</footer_middle_enabled>
+            <footer_middle_column_1>custom</footer_middle_column_1>
+            <footer_middle_column_1_custom>mango_footer_middle_contacts_home12</footer_middle_column_1_custom>
+            <footer_middle_column_1_size_md>3</footer_middle_column_1_size_md>
+            <footer_middle_column_1_size_sm>12</footer_middle_column_1_size_sm>
+            <footer_middle_column_2>custom</footer_middle_column_2>
+            <footer_middle_column_2_custom>mango_footer_middle_links_1</footer_middle_column_2_custom>
+            <footer_middle_column_2_size_md>2</footer_middle_column_2_size_md>
+            <footer_middle_column_2_size_sm>4</footer_middle_column_2_size_sm>
+            <footer_middle_column_3>custom</footer_middle_column_3>
+            <footer_middle_column_3_custom>mango_footer_middle_links_2</footer_middle_column_3_custom>
+            <footer_middle_column_3_size_md>2</footer_middle_column_3_size_md>
+            <footer_middle_column_3_size_sm>4</footer_middle_column_3_size_sm>
+            <footer_middle_column_4>custom</footer_middle_column_4>
+            <footer_middle_column_4_custom>mango_footer_middle_links_3</footer_middle_column_4_custom>
+            <footer_middle_column_4_size_md>2</footer_middle_column_4_size_md>
+            <footer_middle_column_4_size_sm>4</footer_middle_column_4_size_sm>
+            <footer_middle_column_5>custom</footer_middle_column_5>
+            <footer_middle_column_5_custom>mango_footer_middle_working_hours</footer_middle_column_5_custom>
+            <footer_middle_column_5_size_md>3</footer_middle_column_5_size_md>
+            <footer_middle_column_5_size_sm>12</footer_middle_column_5_size_sm>
+            <footer_middle_column_6>0</footer_middle_column_6>
+            <footer_middle_column_6_custom></footer_middle_column_6_custom>
+            <footer_middle_column_6_size_md>3</footer_middle_column_6_size_md>
+            <footer_middle_column_6_size_sm>12</footer_middle_column_6_size_sm>
+            <footer_bottom_enabled>1</footer_bottom_enabled>
+            <footer_bottom_custom>mango_footer_bottom</footer_bottom_custom>
+        </footer>
+        <breadcrumb>
+            <type>1</type>            
+        </breadcrumb>
+        <category>
+            <image_gallery>1</image_gallery>
+            <aspect_ratio>1</aspect_ratio>
+            <ratio_width>400</ratio_width>
+            <ratio_height>400</ratio_height>
+            <compare>1</compare>
+            <page_layout>two_column_left</page_layout>
+        </category>
+        <category_grid>
+            <columns>4</columns>
+            <item_style>type1</item_style>
+            <show_addtocart>1</show_addtocart>
+            <show_addtolinks>1</show_addtolinks>
+        </category_grid>
+        <product_label>
+            <new>1</new>
+            <new_label_text>NEW</new_label_text>
+            <sale>1</sale>
+            <sale_label_text>SALE</sale_label_text>
+        </product_label>
+        <product_view>
+            <page_layout>1</page_layout>
+            <static_block></static_block>            
+        </product_view>
+        <contacts>
+            <type>1</type>
+            <title>Drop Us a line</title>
+            <latitude>48.859228</latitude>
+            <longitude>2.292013</longitude>
+            <zoom>17</zoom>
+            <marker_image>default/pin.png</marker_image>
+            <contact_info1><![CDATA[<h2 class="regular-title short">Let's Stay in Touch</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
+                    <div class="address-box">
+                        <h3>Company address</h3>
+                        <address>
+                            8808 Ave Dermentum, Onsectetur Adipiscing
+                            <br>
+                            Tortor Sagittis, CA 880986,
+                            <br>
+                            United States
+                            <br>
+                            CA 90896,
+                            <br>
+                            United States
+                        </address>
+                    </div>
+                    <div class="address-box">
+                        <h3>Contact Informations</h3>
+                        <address>
+                            Email: stores@domain.com
+                            <br>
+                            Toll-free: (1800) 000 8808
+                        </address>
+                    </div>]]></contact_info1>
+            <contact_info2><![CDATA[<div class="share-box">
+                        <span class="share-label">Share <span class="visible-lg-inline">in social media</span></span>
+                        <div class="social-icons">
+                             <a href="#" class="social-icon icon-instagram" title="Follow us on Instagram">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                             <a href="#" class="social-icon icon-youtbe" title="Subscribe our channel">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon icon-facebook" title="Like us on Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon icon-twitter" title="Find us at Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon icon-dribbble" title="Find us at Dribbble">
+                                <i class="fa fa-dribbble"></i>
+                            </a>
+                            <a href="#" class="social-icon icon-google-plus" title="Find us at Google+">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                            
+                        </div>
+                    </div>]]></contact_info2>
+            <popup><![CDATA[<div class="map-info-box"><h5>Company Address</h5><address>8808 Ave Dermentum, Onsectetur <br>AdipiscingTortor Sagittis, CA 880986,<br> CA 90896,<br> United States</address></div>]]></popup>
+        </contacts>
+        <custom_settings>
+            <custom_style><![CDATA[.header-container.type6 ul.menu {
+                  padding-left: 0;
+                }
+                .cms-index-index .header-container {
+                margin-bottom: 28px;
+                }
+                @media (min-width: 992px){
+                .block-cms-category {
+                     margin-bottom: 54px;
+                }
+                }]]></custom_style>
+        </custom_settings>
+    </mango_settings>
+    <catalogcategorysearch>
+        <general>
+            <enabled>1</enabled>            
+        </general>
+    </catalogcategorysearch>
+    <ajax_catalog>
+        <price_slider_conf>
+            <handle_color>#ca1515</handle_color>
+            <background_color>#d9d9d9</background_color>
+            <range_color>#ca1515</range_color>
+        </price_slider_conf>
+        <ajax_conf>
+            <overlay_color>#000000</overlay_color>
+            <overlay_opacity>0.2</overlay_opacity>
+            <loading_text></loading_text>
+            <loading_text_color>#000000</loading_text_color>
+        </ajax_conf> 
+    </ajax_catalog>
+</config>
+</root>

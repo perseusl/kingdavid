@@ -1,0 +1,65 @@
+/** 
+ * ISAAC Priceslider
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    ISAAC
+ * @package     ISAAC_Priceslider
+ * @copyright   Copyright (c) 2011 ISAAC Software Solutions B.V. (http://www.isaac.nl)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @author      Aad Mathijssen, Sam Berghmans
+ * @version     1.0.0
+ */
+
+.header .form-search #cat {
+    width: 118px;
+    display: inline-block;
+    margin-left: 2px;
+    margin-right: -203px;
+    vertical-align: middle;
+    margin: 0;
+    position: absolute;
+    left: 44px;
+    height: 40px;
+    line-height: 36px;
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 0;
+    background-color: transparent;
+    font-size: 12px;
+}
+.header .form-search #search { width: 100%; float: right; margin: 0; }
+.header .form-search label { width: 22px; float: right; }
+#search_mini_form .header .form-search button.button { float: left; margin-left: 8px; }
+
+.header-container.type1 .header .form-search #cat, .header-container.type3 .header .form-search #cat, .header-container.type8 .header .form-search #cat, .header-container.type9 .header .form-search #cat {
+    left: 77px;
+    height: 45px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.header-container.type10 .form-search #cat {
+    left: 38px;
+    height: 40px;
+    line-height: 40px;
+}
+.header-container.type4 .header .form-search #cat {
+    left: 90px;
+}
+.header-container.type1 .header .form-search #search, .header-container.type3 .header .form-search #search, .header-container.type5 .form-search #search, .header-container.type8 .form-search #search, .header-container.type9 .form-search #search {
+    padding-left: 185px;
+}
+.header-container.type6 .header .form-search #cat { margin: 0; left: 58px; height: 45px;line-height: 40px }
+.header-container.type10 .header .form-search #search, .header-container.type4 .header .form-search #search {
+    padding-left: 165px;
+}

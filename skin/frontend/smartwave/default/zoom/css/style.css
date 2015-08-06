@@ -1,0 +1,39 @@
+/* If PaginationNumbers is true */
+/* preloading images */
+.product-img-box .product-image img { width: 100%; height: auto; }
+.product-image-gallery { position: relative; }
+.product-image-gallery .gallery-image { display: none; }
+.product-image-gallery .gallery-image.visible,
+.product-view .product-img-box .product-image-zoom img.visible { display: block; position:relative; }
+.owl-item.loading { min-height: 150px; background: url(AjaxLoader.gif) no-repeat center center; }
+.owl-item .item { position: relative; }
+#more_img_gal .item { margin: 0 10px; }
+.more-views { margin: 15px 0 0; }
+.more-views .owl-item { cursor: pointer; }
+.product-view .product-img-box .more-views li { float:none; margin: 0;}
+.product-view .product-img-box .more-views li a {float:none; width:100%;height:auto;border:0;}
+.item img { width: 100%; height: auto; }
+
+.vt-icon {
+  display: none; }
+
+.lb-icon {
+  position: absolute;
+  font-size: 18px;
+  z-index: 1000; }
+  .lb-icon.rt_bt {
+    right: 15px;
+    bottom: 10px; }
+  .lb-icon.rt_tp {
+    right: 15px;
+    top: 10px; }
+  .lb-icon.lt_bt {
+    left: 15px;
+    bottom: 10px; }
+  .lb-icon.lt_tp {
+    left: 15px;
+    top: 10px; }
+  .lb-icon i {
+    cursor: pointer; }
+    .lb-icon i:before {
+      content: '\f065'; }

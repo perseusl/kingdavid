@@ -1,0 +1,361 @@
+<?php
+/**
+ * zeonsolutions inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.zeonsolutions.com/shop/license-community.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * This package designed for Magento Community edition
+ * =================================================================
+ * zeonsolutions does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * zeonsolutions does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   design
+ * @package    base_default
+ * @version    0.0.1
+ * @copyright  @copyright Copyright (c) 2013 zeonsolutions.Inc. (http://www.zeonsolutions.com)
+ * @license    http://www.zeonsolutions.com/shop/license-community.txt
+ */
+?>
+<?php $_manufacturer = $this->getManufacturer(); ?>
+<?php $processor = Mage::helper('zeon_manufacturer')->getBlockTemplateProcessor(); ?>
+<div class="page-head">
+    <h3><?php echo Mage::getModel('zeon_manufacturer/manufacturer')->getManufacturerName($_manufacturer->getManufacturer(), Mage::app()->getStore()->getId()) ?></h3>
+</div>
+<div class="category-view">
+    <div class="clearfix" style="margin-bottom: 1px";>
+        <p class="category-image">            
+            <?php if ($_manufacturer->getManufacturerBanner()): ?>
+                <img alt="<?php echo $_manufacturer->getManufacturerBanner() ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'manufacturer' . '/' . $_manufacturer->getManufacturerBanner() ?>" height="auto" width="700">
+            <?php endif; ?>
+        </p>
+    </div>    
+    <div class="category-products">
+        <?php echo $this->getToolbarHtml() ?>
+        <?php if (($_products = $this->getProductCollection()) && $_collectionSize = $_products->getSize()): ?>
+            <?php if ($this->getMode() != 'grid'): ?>
+                <?php $_iterator = 0; ?>
+                <ol class="products-list" id="products-list">
+                    <?php foreach ($_products->getItems() as $_product): ?>
+                        <li class="item">
+                            <div class="item-area">
+                                <div class="product-image-area">
+                                    <?php
+                                    if( Mage::getStoreConfig("quickview/general/enableview", $code) ){
+                                        $base_url = $this->getUrl();
+                                        if(strpos($base_url,'?')!==false)
+                                            $base_url = explode("?",$this->getUrl());
+                                        if(is_array($base_url))
+                                            $base_url = $base_url[0];
+                                        $base_url .= "quickview/index/view/";
+                                        $quickview_url = $base_url."id/".$_product->getId();
+                                    ?>
+                                        <a href="<?php echo $quickview_url; ?>" class="quickview-icon" title="<?php echo $this->__("Quick View"); ?>"><i class="icon-mango-quickview"></i><span><?php echo $this->__("Quick View"); ?></span></a>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    <?php if( !Mage::getStoreConfig("mango_settings/category/hovereffect", $code) ): ?>
+                                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                                            <img src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+                                        </a>
+                                    <?php elseif(Mage::getStoreConfig("mango_settings/category/hovereffect", $code) == "alternative"): ?>
+                                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                                            <img class="defaultImage" src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+                                            <img class="hoverImage" src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>"/>
+                                        </a>
+                                    <?php elseif(Mage::getStoreConfig("mango_settings/category/hovereffect", $code) == "gallery"): ?>
+                                        <?php $product = Mage::getModel('catalog/product')->load($_product->getId()); ?>
+                                        <div class="owl-product-image-gallery owl-carousel">
+                                        <?php foreach ($product->getMediaGalleryImages() as $image): ?>
+                                        <?php // If no image, skip 
+                                            if ($image->getFile() == NULL)
+                                                continue;
+                                        ?>
+                                            <div class="item">
+                                                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($image->getLabel()) ?>" class="product-image">
+                                                    <img class="owl-lazy" data-src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $image->getFile())->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $image->getFile())->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->escapeHtml($image->getLabel()) ?>"/>
+                                                </a>
+                                            </div>
+                                        <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php 
+                                    
+                                        $sale_label = false;
+                                        // Get the Special Price
+                                        $specialprice = Mage::getModel('catalog/product')->load($_product->getId())->getSpecialPrice(); 
+                                        // Get the Special Price FROM date
+                                        $specialPriceFromDate = Mage::getModel('catalog/product')->load($_product->getId())->getSpecialFromDate();
+                                        // Get the Special Price TO date
+                                        $specialPriceToDate = Mage::getModel('catalog/product')->load($_product->getId())->getSpecialToDate();
+                                        // Get Current date
+                                        $today =  time();
+                                     
+                                        if ($specialprice){
+                                            if($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)){
+                                                if(Mage::getStoreConfig("mango_settings/product_label/sale", $code)){
+                                                    $sale_label = true;
+                                    ?>
+                                                <div class="product-label" style="left: 7px;"><span class="sale-product-icon"><?php echo Mage::getStoreConfig("mango_settings/product_label/sale_label_text", $code);?></span></div>
+                                    <?php       
+                                                }
+                                            }
+                                        }
+                                    ?>
+                                    <?php
+                                        $now = date("Y-m-d");
+                                        $newsFrom= substr($_product->getData('news_from_date'),0,10);
+                                        $newsTo=  substr($_product->getData('news_to_date'),0,10);
+                                        if ($newsTo != '' || $newsFrom != ''){
+                                            if (($newsTo != '' && $newsFrom != '' && $now>=$newsFrom && $now<=$newsTo) || ($newsTo == '' && $now >=$newsFrom) || ($newsFrom == '' && $now<=$newsTo))
+                                            {
+                                                if(Mage::getStoreConfig("mango_settings/product_label/new", $code)){
+                                        ?> 
+                                                <div class="product-label" style="right: 7px;"><span class="new-product-icon"><?php echo Mage::getStoreConfig("mango_settings/product_label/new_label_text", $code);?></span></div>
+                                        <?php 
+                                                }
+                                            }
+                                        }
+                                    ?>
+                                </div>
+                                <div class="details-area">
+                                    <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h2>
+                                    <?php 
+                                    if (Mage::helper('catalog')->isModuleEnabled('Mage_Review')):
+                                    ?>
+                                    <?php 
+                                        $review_html = $this->getReviewsSummaryHtml($_product);
+                                        if($review_html){
+                                            echo $review_html;
+                                        }else{
+                                    ?>
+                                        <div class="ratings">
+                                            <div class="rating-box">
+                                                <div class="rating" style="width:0"></div>
+                                            </div>
+                                        </div>
+                                    <?php                            
+                                        }
+                                    ?>
+                                    <?php else: ?>
+                                        <div class="ratings">
+                                            <div class="rating-box">
+                                                <div class="rating" style="width:0"></div>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="short-desc">
+                                        <?php echo $_product->getShortDescription() ?>
+                                    </div>
+                                    <div class="action-area">
+                                        <?php echo $this->getPriceHtml($_product, true) ?>
+                                        <div class="actions">
+                                            <?php if($_product->isSaleable()): ?>
+                                                <?php  if ( !($_product->getTypeInstance(true)->hasOptions($_product) || $_product->isGrouped()) ) :  ?>
+                                                    <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtocart/enablecategory", $code)):?>javascript:setLocationAjax('<?php echo $this->getAddToCartUrl($_product) ?>')<?php else: ?><?php echo $this->getAddToCartUrl($_product) ?><?php endif; ?>" class="addtocart" title="<?php echo $this->__('Add to Cart') ?>"><span><?php echo $this->__('Add to Cart') ?></span></a>
+                                                <?php else : ?>
+                                                    <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtocart/enablecategory", $code)):?>javascript:showOptions('<?php echo $_product->getId()?>')<?php else: ?><?php echo $this->getAddToCartUrl($_product) ?><?php endif; ?>" class="addtocart" title="<?php echo $this->__('Add to Cart') ?>"><span><?php echo $this->__('Add to Cart') ?></span></a>
+                                                    <a href='<?php echo $this->getUrl('ajaxcart/index/options',array('product_id'=>$_product->getId()));?>' class='fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'>Options</a>
+                                                <?php endif;?>
+                                            <?php else: ?>
+                                                <a href="javascript:void(0);" class="addtocart outofstock" title="<?php echo $this->__('Out of stock') ?>"><?php echo $this->__('Out of stock') ?></span></a>
+                                            <?php endif; ?>
+                                            <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                            <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtolinks/enablecategory", $code)):?>javascript:ajaxWishlist('<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>','<?php echo $_product->getId()?>');<?php else: ?><?php echo $this->helper('wishlist')->getAddUrl($_product) ?><?php endif; ?>" class="addtowishlist" title="<?php echo $this->__('Add to Wishlist') ?>"><i class="icon-mango-heart"></i><span><?php echo $this->__('Add to Wishlist') ?></span></a>
+                                            <?php endif; ?>
+
+                                            <?php if(Mage::getStoreConfig("mango_settings/category/compare", $code) && $_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                                <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtolinks/enablecategory", $code)):?>javascript:ajaxCompare('<?php echo $_compareUrl ?>','<?php echo $_product->getId()?>');<?php else: ?><?php echo $_compareUrl ?><?php endif; ?>" class="comparelink" title="<?php echo $this->__('Add to Compare') ?>"><i class="icon-mango-compare"></i><span><?php echo $this->__('Add to Compare') ?></span></a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ol>
+            <?php else: ?>
+                <?php $_columnCount = Mage::getStoreConfig("mango_settings/category_grid/columns",$code); ?>
+                <?php $item_style = Mage::getStoreConfig("mango_settings/category_grid/item_style",$code); ?>                
+                <ul class="products-grid <?php echo $item_style;?> columns<?php echo $_columnCount; ?><?php if(!Mage::getStoreConfig("mango_settings/category_grid/show_addtolinks", $code)):?> hide-addtolinks<?php endif; ?><?php if(!Mage::getStoreConfig("mango_settings/category_grid/show_addtocart", $code)):?> hide-addtocart<?php endif; ?>">
+                <?php $i=0; foreach ($_products->getItems() as $_product): ?>
+                    <li class="item">
+                        <div class="item-area">
+                            <div class="product-image-area">
+                                <?php if ($item_style != "type4"): ?>
+                                <div class="actions">
+                                    <?php if($_product->isSaleable()): ?>
+                                        <?php  if ( !($_product->getTypeInstance(true)->hasOptions($_product)/*$_product->getData('has_options')*/ || $_product->isGrouped()) ) :  ?>
+                                            <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtocart/enablecategory", $code)):?>javascript:setLocationAjax('<?php echo $this->getAddToCartUrl($_product) ?>')<?php else: ?><?php echo $this->getAddToCartUrl($_product) ?><?php endif; ?>" class="addtocart" title="<?php echo $this->__('Add to Cart') ?>"><i class="icon-mango-cart"></i><span>&nbsp;<?php echo $this->__('Add to Cart') ?></span></a>
+                                        <?php else : ?>
+                                            <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtocart/enablecategory", $code)):?>javascript:showOptions('<?php echo $_product->getId()?>')<?php else: ?><?php echo $this->getAddToCartUrl($_product) ?><?php endif; ?>" class="addtocart" title="<?php echo $this->__('Add to Cart') ?>"><i class="icon-mango-cart"></i><span><?php echo $this->__('Add to Cart') ?></span></a>
+                                            <a href='<?php echo $this->getUrl('ajaxcart/index/options',array('product_id'=>$_product->getId()));?>' class='fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'>Options</a>
+                                        <?php endif;?>
+                                    <?php endif; ?>
+                                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                    <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtolinks/enablecategory", $code)):?>javascript:ajaxWishlist('<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>','<?php echo $_product->getId()?>');<?php else: ?><?php echo $this->helper('wishlist')->getAddUrl($_product) ?><?php endif; ?>" class="addtowishlist" title="<?php echo $this->__('Add to Wishlist') ?>"><i class="icon-mango-heart"></i></a>
+                                    <?php endif; ?>
+                                    <?php if(Mage::getStoreConfig("mango_settings/category/compare", $code) && $_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                        <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtolinks/enablecategory", $code)):?>javascript:ajaxCompare('<?php echo $_compareUrl ?>','<?php echo $_product->getId()?>');<?php else: ?><?php echo $_compareUrl ?><?php endif; ?>" class="comparelink" title="<?php echo $this->__('Add to Compare') ?>"><i class="icon-mango-compare"></i></a>
+                                    <?php endif; ?>
+                                    <?php
+                                    if( Mage::getStoreConfig("quickview/general/enableview", $code) ){
+                                        $base_url = $this->getUrl();
+                                        if(strpos($base_url,'?')!==false)
+                                            $base_url = explode("?",$this->getUrl());
+                                        if(is_array($base_url))
+                                            $base_url = $base_url[0];
+                                        $base_url .= "quickview/index/view/";
+                                        $quickview_url = $base_url."id/".$_product->getId();
+                                    ?>
+                                        <a href="<?php echo $quickview_url; ?>" class="quickview-icon"><i class="icon-mango-quickview"></i><span><?php echo $this->__("Quick View"); ?></span></a>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                                <?php endif; ?>
+                                <?php if( !Mage::getStoreConfig("mango_settings/category/hovereffect", $code) ): ?>
+                                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                                        <img src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+                                    </a>
+                                <?php elseif(Mage::getStoreConfig("mango_settings/category/hovereffect", $code) == "alternative"): ?>
+                                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                                        <img class="defaultImage" src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+                                        <img class="hoverImage" src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>"/>
+                                    </a>
+                                <?php elseif(Mage::getStoreConfig("mango_settings/category/hovereffect", $code) == "gallery"): ?>
+                                    <?php
+                                        $product = Mage::getModel('catalog/product')->load($_product->getId());
+                                        $gallery_images = $product->getMediaGalleryImages();
+                                    ?>
+                                    <?php if(count($gallery_images) < 1): ?>
+                                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                                        <img src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+                                    </a>
+                                    <?php else: ?>
+                                    <div class="owl-product-image-gallery owl-carousel">
+                                    <?php foreach ($product->getMediaGalleryImages() as $image): ?>
+                                    <?php // If no image, skip 
+                                        if ($image->getFile() == NULL)
+                                            continue;
+                                    ?>
+                                        <div class="item">
+                                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($image->getLabel()) ?>" class="product-image">
+                                                <img class="owl-lazy" data-src="<?php if($aspect_ratio):?><?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $image->getFile())->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(250);?><?php else: ?><?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $image->getFile())->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->escapeHtml($image->getLabel()) ?>"/>
+                                            </a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                    </div>
+                                    <?php endif ?>
+                                <?php endif; ?>
+                                <?php 
+                                    
+                                    $sale_label = false;
+                                    // Get the Special Price
+                                    $specialprice = Mage::getModel('catalog/product')->load($_product->getId())->getSpecialPrice(); 
+                                    // Get the Special Price FROM date
+                                    $specialPriceFromDate = Mage::getModel('catalog/product')->load($_product->getId())->getSpecialFromDate();
+                                    // Get the Special Price TO date
+                                    $specialPriceToDate = Mage::getModel('catalog/product')->load($_product->getId())->getSpecialToDate();
+                                    // Get Current date
+                                    $today =  time();
+                                 
+                                    if ($specialprice){
+                                        if($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)){
+                                            if(Mage::getStoreConfig("mango_settings/product_label/sale", $code)){
+                                                $sale_label = true;
+                                ?>
+                                            <div class="product-label" style="left: 7px;"><span class="sale-product-icon"><?php echo Mage::getStoreConfig("mango_settings/product_label/sale_label_text", $code);?></span></div>
+                                <?php       
+                                            }
+                                        }
+                                    }
+                                ?>
+                                <?php
+                                    $now = date("Y-m-d");
+                                    $newsFrom= substr($_product->getData('news_from_date'),0,10);
+                                    $newsTo=  substr($_product->getData('news_to_date'),0,10);
+                                    if ($newsTo != '' || $newsFrom != ''){
+                                        if (($newsTo != '' && $newsFrom != '' && $now>=$newsFrom && $now<=$newsTo) || ($newsTo == '' && $now >=$newsFrom) || ($newsFrom == '' && $now<=$newsTo))
+                                        {
+                                            if(Mage::getStoreConfig("mango_settings/product_label/new", $code)){
+                                    ?> 
+                                            <div class="product-label" style="right: 7px;"><span class="new-product-icon"><?php echo Mage::getStoreConfig("mango_settings/product_label/new_label_text", $code);?></span></div>
+                                    <?php 
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </div>
+                            <div class="details-area">
+                                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h2>
+                                <?php 
+                                if(Mage::helper('catalog')->isModuleEnabled('Mage_Review')):
+                                if($_product->getRatingSummary()): 
+                                ?>
+                                <?php 
+                                    $review_html = $this->getReviewsSummaryHtml($_product, 'short');
+                                    if($review_html){
+                                        echo $review_html;
+                                    }else{
+                                ?>
+                                    <div class="ratings">
+                                        <div class="rating-box">
+                                            <div class="rating" style="width:0"></div>
+                                        </div>
+                                    </div>
+                                <?php                            
+                                    }
+                                ?>
+                                <?php else: ?>
+                                    <div class="ratings">
+                                        <div class="rating-box">
+                                            <div class="rating" style="width:0"></div>
+                                        </div>
+                                    </div>
+                                <?php 
+                                endif; 
+                                endif;
+                                ?>
+                                <?php echo $this->getPriceHtml($_product, true) ?>
+                            </div>
+                        </div>
+                    </li>
+                    <?php endforeach ?>
+                </ul>  
+                <script type="text/javascript">
+                    jQuery('.col-main .products-grid li:nth-child(2n)').addClass('nth-child-2n');
+                    jQuery('.col-main .products-grid li:nth-child(2n+1)').addClass('nth-child-2np1');
+                    jQuery('.col-main .products-grid li:nth-child(3n)').addClass('nth-child-3n');
+                    jQuery('.col-main .products-grid li:nth-child(3n+1)').addClass('nth-child-3np1');
+                    jQuery('.col-main .products-grid li:nth-child(4n)').addClass('nth-child-4n');
+                    jQuery('.col-main .products-grid li:nth-child(4n+1)').addClass('nth-child-4np1');
+                    jQuery('.col-main .products-grid li:nth-child(5n)').addClass('nth-child-5n');
+                    jQuery('.col-main .products-grid li:nth-child(5n+1)').addClass('nth-child-5np1');
+                    jQuery('.col-main .products-grid li:nth-child(6n)').addClass('nth-child-6n');
+                    jQuery('.col-main .products-grid li:nth-child(6n+1)').addClass('nth-child-6np1');
+                    jQuery('.col-main .products-grid li:nth-child(7n)').addClass('nth-child-7n');
+                    jQuery('.col-main .products-grid li:nth-child(7n+1)').addClass('nth-child-7np1');
+                    jQuery('.col-main .products-grid li:nth-child(8n)').addClass('nth-child-8n');
+                    jQuery('.col-main .products-grid li:nth-child(8n+1)').addClass('nth-child-8np1');
+                </script>              
+            <?php endif; ?>
+        <?php else: ?>
+            <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+        <?php endif; ?>
+    </div>
+    <div class="toolbar-bottom">
+        <?php echo $this->getToolbarHtml() ?>
+    </div>
+</div>

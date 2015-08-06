@@ -1,0 +1,3 @@
+<div class="<?php if(Mage::getStoreConfig("mango_settings/general/layout", $code) == "full_width"): ?>container-fluid<?php else: ?>container<?php endif;?>">
+    <h1 class="title"><span><?php echo $this->getLayout()->getBlock('head')->getTitle(); ?></span></h1>
+</div>

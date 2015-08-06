@@ -1,0 +1,113 @@
+<?php 
+/**
+* template: product_view_media
+* @var $_product    Mage_Catalog_Model_Product
+* @author           SW-THEMES
+* @copyright        Copyright 2014 Smartwave
+* */                         
+?>
+
+<?php 
+    $_product = $this->getProduct();    
+    $_helper = $this->helper('catalog/output');
+    
+    $helpZoom = $this->helper('smartwave_zoom');
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+    
+    // lightbox settings
+    $lbOptions = $helpZoom->getLightBoxOptions();
+?>
+
+<?php // main image ?>
+<div class="product-image product-image-zoom">
+    <div class="product-image-gallery">        
+         <?php $i=0; foreach ($this->getGalleryImages() as $_image): ?>
+            <?php // If no image, skip 
+                if ($_image->getFile() == NULL)
+                    continue;
+            ?>
+            <img id="image-<?php echo $i; ?>"
+                 class="gallery-image <?php echo ($i == 0)?'visible':'' ?>"
+                 src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(480); ?>"
+                 data-zoom-image="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(480*Mage::getStoreConfig("zoom/general/zoom_img_times",$code)); ?>" />                
+            <?php if ($helpZoom->useLightbox()) :?>             
+             <a class="fancybox vt-icon image-fancy-<?php echo $i; ?> <?php echo ($i == 0)?'cur-active':'' ?>" rel="lightbox-gallery" href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(960); ?>" title="<?php echo $this->escapeHtml($this->getImageLabel());?>"><?php echo $this->escapeHtml($this->getImageLabel());?></a>
+             <?php endif;?>
+        <?php $i++; endforeach; ?>
+        <?php if ($helpZoom->useLightbox()): ?>
+            <div class="<?php echo $lbOptions['position']?> lb-icon">
+                <a class="lb-main-icon"><i class="fa fa-expend"></i></a>
+            </div>
+        <?php endif; ?>                              
+    </div>
+</div>
+
+<?php if (count($this->getGalleryImages()) > 0): ?>
+<div class="more-views">
+    <ul class="product-image-thumbs" id="more_img_gal">
+    <?php $i=0; foreach ($this->getGalleryImages() as $_image): ?>
+        <?php // If no image, skip 
+            if ($_image->getFile() == NULL)
+                continue;
+        ?>
+        <li>
+            <a class="thumb-link" href="#" title="<?php echo $this->escapeHtml($_image->getLabel()) ?>" data-image-index="<?php echo $i; ?>">
+                <?php if (Mage::getStoreConfig("zoom/gallery/aspect_ratio", $code)): ?>
+                    <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(130); ?>"
+                     width="130" height="auto" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" />    
+                <?php else: ?>
+                    <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(Mage::getStoreConfig("zoom/gallery/ga_img_width", $code),Mage::getStoreConfig("zoom/gallery/ga_img_height", $code)); ?>"
+                     width="<?php echo Mage::getStoreConfig("zoom/gallery/ga_img_width", $code) ?>" height="<?php echo Mage::getStoreConfig("zoom/gallery/ga_img_height", $code) ?>" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" />
+                <?php endif; ?>
+                
+            </a>
+        </li>        
+    <?php $i++; endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>
+
+<script type="text/javascript">
+
+    
+    if (typeof GI == "undefined") GI = {};
+    GI.Options = {
+        ITEMS   : <?php echo Mage::getStoreConfig("zoom/gallery/ga_item_num", $code)?>,
+        MARGIN  : <?php echo Mage::getStoreConfig("zoom/gallery/ga_item_margin", $code) ?>
+    };                                                                                     
+    
+    function getZoomParameter() {
+        var options;
+        <?php 
+           if (Mage::getStoreConfig("zoom/general/enable", $code) && Mage::getStoreConfig("zoom/general/used_zoom", $code)) {
+               $cfg = array();
+               $ztype =  Mage::getStoreConfig("zoom/general/type", $code);
+               $scroll = Mage::getStoreConfig("zoom/general/scroll_zoom", $code);
+               
+               $cfg[] = "zoomType:'$ztype'";
+               $cfg[] = "scrollZoom:$scroll";
+               
+               if(Mage::getStoreConfig("zoom/general/type", $code) == "window") {
+                   $windWidth = Mage::getStoreConfig("zoom/general/zoom_wind_width", $code);
+                   $windHeight = Mage::getStoreConfig("zoom/general/zoom_wind_height", $code);
+                   $tint = Mage::getStoreConfig("zoom/general/tint", $code);
+                   
+                   $cfg[] = "zoomWindowWidth:$windWidth";
+                   $cfg[] = "zoomWindowHeight:$windHeight";
+                   $cfg[] = "tint:$tint";
+               }
+               if(Mage::getStoreConfig("zoom/general/type", $code) == "lens") {
+                   $lensShap = Mage::getStoreConfig("zoom/general/lens_shape", $code);
+                   $lensSize = Mage::getStoreConfig("zoom/general/lens_size", $code);
+                   
+                   $cfg[] = "lensShape:'$lensShap'";
+                   $cfg[] = "lensSize:$lensSize" ;
+               }
+               $options = implode($cfg, ',');
+           } 
+        ?>
+        var options = {easing:true,cursor:"crosshair",<?php echo $options ?>};
+        return options;        
+    }
+</script>

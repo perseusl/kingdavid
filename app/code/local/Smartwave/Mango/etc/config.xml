@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <modules>
+        <Smartwave_Mango>
+            <version>1.0.2</version>
+        </Smartwave_Mango>
+    </modules>                   
+    <admin>
+        <routers>
+            <porto>
+                <use>admin</use>
+                <args>
+                    <module>Smartwave_Mango</module>
+                    <frontName>mango</frontName>
+                </args>
+            </porto>
+        </routers>
+    </admin>
+    <frontend>
+        <translate>
+            <modules>
+                <Smartwave_Mango>
+                    <files>
+                        <default>Smartwave_Mango.csv</default>
+                    </files>
+                </Smartwave_Mango>
+            </modules>
+        </translate>
+    </frontend>
+    <global>
+        <blocks>
+            <mango>
+                <class>Smartwave_Mango_Block</class>
+            </mango>
+            <page>
+                <rewrite>
+                    <html_head>Smartwave_Mango_Block_Html_Head</html_head>
+                </rewrite>
+            </page>
+        </blocks>
+        <helpers>
+            <mango>
+                <class>Smartwave_Mango_Helper</class>
+            </mango>
+        </helpers>
+        <models>
+            <mango>
+                <class>Smartwave_Mango_Model</class>
+            </mango>
+        </models>
+        <resources>
+            <mango_setup>
+                <setup>
+                    <module>Smartwave_Mango</module>
+                    <class>Smartwave_Mango_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mango_setup>
+            <mango_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mango_write>
+            <mango_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mango_read>
+        </resources>
+    </global>
+    <adminhtml>
+        <events>                
+            <controller_action_postdispatch_adminhtml_system_config_save>
+                <observers>
+                    <mango>
+                        <type>singleton</type>
+                        <class>mango/observer</class>
+                        <method>hookTo_controllerActionPostdispatchAdminhtmlSystemConfigSave</method>
+                    </mango>
+                </observers>
+            </controller_action_postdispatch_adminhtml_system_config_save>
+            <store_edit>
+                <observers>
+                    <mango>
+                        <type>singleton</type>
+                        <class>mango/observer</class>
+                        <method>hookTo_storeEdit</method>
+                    </mango>
+                </observers>
+            </store_edit>
+        </events>
+        <cms>
+            <browser>
+                <extensions>
+                    <allowed>
+                        <jpg>1</jpg>
+                        <jpeg>1</jpeg>
+                        <png>1</png>
+                        <gif>1</gif>
+                        <mp4>1</mp4>
+                        <webm>1</webm>
+                    </allowed>
+                </extensions>
+            </browser>
+        </cms>
+    </adminhtml>
+    <default>
+        <mango_design>
+            
+        </mango_design>
+        <mango_settings>
+			<general>
+				<disable_responsive>0</disable_responsive>
+			</general>
+            <header>
+                <type>1</type>
+                <full_width_type_6>1</full_width_type_6>
+                <language_flag>1</language_flag>
+                <toplinks_text><![CDATA[<i class="icon-mango-user"></i> Links <i class="icon-mango-angle-down" style="color: #6e6e6e;"></i>]]></toplinks_text>
+                <static_block>mango_custom_block_for_header</static_block>
+                <static_block_2>mango_header_social_icons</static_block_2>
+                <static_block_3>mango_header_box</static_block_3>
+                <sticky_header>1</sticky_header>
+                <mobile_header_custom_block>mango_mobile_header_custom_block</mobile_header_custom_block>
+            </header>
+            <footer>
+                <footer_top_enabled>1</footer_top_enabled>
+                <footer_top_column_1>custom</footer_top_column_1>
+                <footer_top_column_1_custom>mango_footer_top_1</footer_top_column_1_custom>
+                <footer_top_column_1_size_md>4</footer_top_column_1_size_md>
+                <footer_top_column_1_size_sm>4</footer_top_column_1_size_sm>
+                <footer_top_column_2>custom</footer_top_column_2>
+                <footer_top_column_2_custom>mango_footer_top_2</footer_top_column_2_custom>
+                <footer_top_column_2_size_md>4</footer_top_column_2_size_md>
+                <footer_top_column_2_size_sm>4</footer_top_column_2_size_sm>
+                <footer_top_column_3>custom</footer_top_column_3>
+                <footer_top_column_3_custom>mango_footer_top_3</footer_top_column_3_custom>
+                <footer_top_column_3_size_md>4</footer_top_column_3_size_md>
+                <footer_top_column_3_size_sm>4</footer_top_column_3_size_sm>
+                <footer_top_column_4></footer_top_column_4>
+                <footer_top_column_4_custom></footer_top_column_4_custom>
+                <footer_top_column_4_size_md>4</footer_top_column_4_size_md>
+                <footer_top_column_4_size_sm>4</footer_top_column_4_size_sm>
+                <footer_top_column_5></footer_top_column_5>
+                <footer_top_column_5_custom></footer_top_column_5_custom>
+                <footer_top_column_5_size_md>4</footer_top_column_5_size_md>
+                <footer_top_column_5_size_sm>4</footer_top_column_5_size_sm>
+                <footer_top_column_6></footer_top_column_6>
+                <footer_top_column_6_custom></footer_top_column_6_custom>
+                <footer_top_column_6_size_md>4</footer_top_column_6_size_md>
+                <footer_top_column_6_size_sm>4</footer_top_column_6_size_sm>
+                <footer_middle_enabled>1</footer_middle_enabled>
+                <footer_middle_column_1>custom</footer_middle_column_1>
+                <footer_middle_column_1_custom>mango_footer_middle_contacts</footer_middle_column_1_custom>
+                <footer_middle_column_1_size_md>3</footer_middle_column_1_size_md>
+                <footer_middle_column_1_size_sm>12</footer_middle_column_1_size_sm>
+                <footer_middle_column_2>custom</footer_middle_column_2>
+                <footer_middle_column_2_custom>mango_footer_middle_links_1</footer_middle_column_2_custom>
+                <footer_middle_column_2_size_md>2</footer_middle_column_2_size_md>
+                <footer_middle_column_2_size_sm>4</footer_middle_column_2_size_sm>
+                <footer_middle_column_3>custom</footer_middle_column_3>
+                <footer_middle_column_3_custom>mango_footer_middle_links_2</footer_middle_column_3_custom>
+                <footer_middle_column_3_size_md>2</footer_middle_column_3_size_md>
+                <footer_middle_column_3_size_sm>4</footer_middle_column_3_size_sm>
+                <footer_middle_column_4>custom</footer_middle_column_4>
+                <footer_middle_column_4_custom>mango_footer_middle_links_3</footer_middle_column_4_custom>
+                <footer_middle_column_4_size_md>2</footer_middle_column_4_size_md>
+                <footer_middle_column_4_size_sm>4</footer_middle_column_4_size_sm>
+                <footer_middle_column_5>custom</footer_middle_column_5>
+                <footer_middle_column_5_custom>mango_footer_middle_working_hours</footer_middle_column_5_custom>
+                <footer_middle_column_5_size_md>3</footer_middle_column_5_size_md>
+                <footer_middle_column_5_size_sm>12</footer_middle_column_5_size_sm>
+                <footer_middle_column_6></footer_middle_column_6>
+                <footer_middle_column_6_custom></footer_middle_column_6_custom>
+                <footer_middle_column_6_size_md>3</footer_middle_column_6_size_md>
+                <footer_middle_column_6_size_sm>12</footer_middle_column_6_size_sm>
+                <footer_bottom_enabled>1</footer_bottom_enabled>
+                <footer_bottom_custom>mango_footer_bottom</footer_bottom_custom>
+            </footer>
+            <checkout>
+                <static_block>checkout_custom_block</static_block>
+            </checkout>
+            <contacts>
+                <type>1</type>
+                <title>Drop Us a line</title>
+                <latitude>48.859228</latitude>
+                <longitude>2.292013</longitude>
+                <zoom>17</zoom>
+                <marker_image>default/pin.png</marker_image>
+                <contact_info1><![CDATA[<h2 class="regular-title short">Let's Stay in Touch</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
+                        <div class="address-box">
+                            <h3>Company address</h3>
+                            <address>
+                                8808 Ave Dermentum, Onsectetur Adipiscing
+                                <br>
+                                Tortor Sagittis, CA 880986,
+                                <br>
+                                United States
+                                <br>
+                                CA 90896,
+                                <br>
+                                United States
+                            </address>
+                        </div>
+                        <div class="address-box">
+                            <h3>Contact Informations</h3>
+                            <address>
+                                Email: stores@domain.com
+                                <br>
+                                Toll-free: (1800) 000 8808
+                            </address>
+                        </div>]]></contact_info1>
+                <contact_info2><![CDATA[<div class="share-box">
+                            <span class="share-label">Share <span class="visible-lg-inline">in social media</span></span>
+                            <div class="social-icons">
+                                 <a href="#" class="social-icon icon-instagram" title="Follow us on Instagram">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                                 <a href="#" class="social-icon icon-youtbe" title="Subscribe our channel">
+                                    <i class="fa fa-youtube"></i>
+                                </a>
+                                <a href="#" class="social-icon icon-facebook" title="Like us on Facebook">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#" class="social-icon icon-twitter" title="Find us at Twitter">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon icon-dribbble" title="Find us at Dribbble">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                                <a href="#" class="social-icon icon-google-plus" title="Find us at Google+">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>                                
+                            </div>
+                        </div>]]></contact_info2>
+                <popup><![CDATA[<div class="map-info-box"><h5>Company Address</h5><address>8808 Ave Dermentum, Onsectetur <br>AdipiscingTortor Sagittis, CA 880986,<br> CA 90896,<br> United States</address></div>]]></popup>
+            </contacts>
+            <newsletter_popup>
+                <enabled>1</enabled>                
+                <newsletter_content><![CDATA[<h2>Mango Newsletter</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>]]></newsletter_content>
+                <newsletter_width>830px</newsletter_width>
+                <newsletter_height>400px</newsletter_height>
+                <newsletter_custom_style><![CDATA[#newsletter_popup h2{letter-spacing: -0.9px}#newsletter_popup p{letter-spacing: 0.4px}#newsletter_popup button.button{letter-spacing: 2px;}]]></newsletter_custom_style>
+            </newsletter_popup>
+            <category>
+                <hovereffect>alternative</hovereffect>
+                <aspect_ratio>1</aspect_ratio>
+                <ratio_width>400</ratio_width>
+                <ratio_height>400</ratio_height>
+                <compare>1</compare>
+                <page_layout>two_column_left</page_layout>
+            </category>
+			<category_grid>
+                <columns>4</columns>
+                <item_style>type1</item_style>
+                <show_addtocart>1</show_addtocart>
+                <show_addtolinks>1</show_addtolinks>
+            </category_grid>
+            <product_label>
+                <new>1</new>
+                <new_label_text>NEW</new_label_text>
+                <sale>1</sale>
+                <sale_label_text>SALE</sale_label_text>
+            </product_label>
+			<product_view>
+				<page_layout>1</page_layout>
+				<prev_next>1</prev_next>
+				<prev_text><![CDATA[<i class="demo-icon icon-mango-angle-left"></i>]]></prev_text>
+				<next_text><![CDATA[<i class="demo-icon icon-mango-angle-right"></i>]]></next_text>
+                <aspect_ratio>1</aspect_ratio>
+                <img_width>500</img_width>
+                <img_height>700</img_height>
+			</product_view>
+            <product_view_custom_tab>
+                <custom_tab>1</custom_tab>
+                <from_category>1</from_category>
+                <static_block_tab_1>1</static_block_tab_1>
+                <static_block_tab_id_1>mango_custom_tab</static_block_tab_id_1>
+            </product_view_custom_tab>
+        </mango_settings>
+    </default>
+</config>

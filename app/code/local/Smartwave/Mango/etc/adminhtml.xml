@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mango_design translate="title" module="mango">
+                                        <title>Mango - Design Panel</title>
+                                    </mango_design>
+                                    <mango_settings translate="title" module="mango">
+                                        <title>Mango - Settings Panel</title>
+                                    </mango_settings>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
