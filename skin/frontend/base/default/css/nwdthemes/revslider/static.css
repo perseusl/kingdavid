@@ -162,13 +162,3 @@ text-shadow:none;
 .tp-caption a:hover {
 color:#ffa902;
 }
-.tp-caption.custom-subtitle {
-	position:absolute;
-	font-family: "Montserrat", Verdana, sans-serif;
-	font-weight: 700;
-      font-size: 24px;
-	color:#fff;
-	line-height: 1;
-	white-space:nowrap;
-	text-transform:uppercase;	
-}

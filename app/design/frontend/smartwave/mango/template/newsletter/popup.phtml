@@ -32,7 +32,7 @@
     });
 
 function beginNewsletterForm() {
-    jQuery.fancybox({
+    /*jQuery.fancybox({
         'padding': '0px',
         'autoScale': true,
         'transitionIn': 'fade',
@@ -50,33 +50,221 @@ function beginNewsletterForm() {
                 locked  : false
             }
         }
-    });
-    jQuery('#newsletter_popup').trigger('click');
+    });*/
+    /*jQuery('#newsletter_popup').trigger('click');*/
 }
 
+function closePopUp() {
+    jQuery("#check-wrapper").fadeOut();
+    jQuery(".over-lay").hide();
+}
+function closeBrowser() {
+    window.open('','_self').close();
+}
 </script>
+<style type="text/css">
+    .over-lay {
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        width: 100%;
+        height: 100%;
+        background: rgba(37, 37, 37, 0.55);
+    }
+    .check-wrapper {
+        position: fixed;
+        z-index: 10000;
+        width: 400px;
+        left: 37%;
+        top: 50px;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 0px 4px 6px 1px rgba(0, 0, 0, 0.43);
+        background: rgba(64, 64, 64, 0.69);
+    }
+    .check-wrapper .check {
+        margin: 0 auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 4px;
+    }
+    .check-wrapper .check img {
+        width: 300px;
+        display: block;
+        margin: 0 auto;
+    }
+    .check-wrapper .check span {
+        display: block;
+        text-align: center;
+    }
+    .check-wrapper .check .welcome {
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .check-wrapper .check .intention {
+        color: #717171;
+        text-align: justify;
+    }
+    .check-wrapper .check .title {
+        font-size: 2.5em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #484848;
+        text-shadow: 0 2px 1px #969696;
+    }
+    .selection {
+        margin-top: 20px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .selection .over18 ,.selection .under18 {
+        margin-top: 10px;
+        padding: 10px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 28px;
+        text-shadow: 0px 1px 0px rgba(255,255,255,.4);
+        -webkit-transition: all 1s ease;
+    }
+    .selection .over18 i ,.selection .under18 i {
+        margin-left: 5px;
+    }
+    .selection .over18 {
+        color: #fff;
+        background-image: -webkit-linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 72));
+        background-image: -moz-linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 72));
+        background-image: -o-linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 72));
+        background-image: -ms-linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 72));
+        background-image: linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 72));
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#feda71', EndColorStr='#feba48');
+        border: 1px solid #ca9336;
+        -webkit-box-shadow: inset 0px 1px 0px #fee395, 0px 1px 1px rgba(0,0,0,.15);
+        -moz-box-shadow: inset 0px 1px 0px #fee395, 0px 1px 1px rgba(0,0,0,.15);
+        box-shadow: inset 0px 1px 0px #fee395, 0px 1px 1px rgba(0,0,0,.15);
+        color: #996633;
+       
+    }
+    .selection .under18 {
+        background: -webkit-linear-gradient(top, rgba(248,114,136,1) 0%,rgba(243,71,85,1) 90%,rgba(225,65,77,1) 95%,rgba(206,59,70,1) 100%);
+        background: -moz-linear-gradient(top, rgba(248,114,136,1) 0%,rgba(243,71,85,1) 90%,rgba(225,65,77,1) 95%,rgba(206,59,70,1) 100%);
+        background: -o-linear-gradient(top, rgba(248,114,136,1) 0%,rgba(243,71,85,1) 90%,rgba(225,65,77,1) 95%,rgba(206,59,70,1) 100%);
+        background: -ms-linear-gradient(top, rgba(248,114,136,1) 0%,rgba(243,71,85,1) 90%,rgba(225,65,77,1) 95%,rgba(206,59,70,1) 100%);
+        background: linear-gradient(top, rgba(248,114,136,1) 0%,rgba(243,71,85,1) 90%,rgba(225,65,77,1) 95%,rgba(206,59,70,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f87288', endColorstr='#ce3b46',GradientType=0 );
+        border: 1px solid #b0333e;
+        color:#fff;
+    }
+    .selection .over18:hover {
+        background-image: -webkit-linear-gradient(top, rgb(254, 194, 82), rgb(254, 205, 97));
+        background-image: -moz-linear-gradient(top, rgb(254, 194, 82), rgb(254, 205, 97));
+        background-image: -o-linear-gradient(top, rgb(254, 194, 82), rgb(254, 205, 97));
+        background-image: -ms-linear-gradient(top, rgb(254, 194, 82), rgb(254, 205, 97));
+        background-image: linear-gradient(top, rgb(254, 194, 82), rgb(254, 205, 97));
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fec252', EndColorStr='#fecd61');
+     
+        -webkit-box-shadow:
+            inset 0px 1px 0px #fed17e,
+                  0px 1px 1px rgba(0,0,0,.1);
+        -moz-box-shadow:
+            inset 0px 1px 0px #fed17e,
+                  0px 1px 1px rgba(0,0,0,.1);
+        box-shadow:
+            inset 0px 1px 0px #fed17e,
+                  0px 1px 1px rgba(0,0,0,.1);
+        cursor: pointer;
+    }
+    .selection .under18:hover {
+        background: -webkit-linear-gradient(top, rgba(206,59,70,1) 100%, rgba(225,65,77,1) 95%, rgba(243,71,85,1) 90%, rgba(248,114,136,1) 0%);
+        background: -moz-linear-gradient(top, rgba(206,59,70,1) 100%, rgba(225,65,77,1) 95%, rgba(243,71,85,1) 90%, rgba(248,114,136,1) 0%);
+        background: -o-linear-gradient(top, rgba(206,59,70,1) 100%, rgba(225,65,77,1) 95%, rgba(243,71,85,1) 90%, rgba(248,114,136,1) 0%);
+        background: -ms-linear-gradient(top, rgba(206,59,70,1) 100%, rgba(225,65,77,1) 95%, rgba(243,71,85,1) 90%, rgba(248,114,136,1) 0%);
+        background: linear-gradient(top, rgba(206,59,70,1) 100%, rgba(225,65,77,1) 95%, rgba(243,71,85,1) 90%, rgba(248,114,136,1) 0%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f87288', endColorstr='#ce3b46',GradientType=0 );
+        border: 1px solid #b0333e;
+        cursor: pointer;
+    }
+    .copyright {
+        text-align: center; 
+        margin-top: 15px;
+        font-size: 0.8em;
+        color: #C1C1C1;
+    }
+    @media screen and (max-width: 430px) {
+        .check-wrapper {
+            left: 10%;
+            width: 330px;
+        }
+        .check-wrapper .check img {
+            width: 250px;
+        }
+        .check-wrapper .check .intention {
+            font-size: 0.8em;
+        }
+        .selection .over18, .selection .under18 {
+            padding: 5px;
+        }
+    }
+    @media screen and (min-width: 431px) {
+        .check-wrapper {
+            left: 15%;
+            width: 330px;
+        }
+        .check-wrapper .check img {
+            width: 260px;
+        }
+    }
+    @media screen and (min-width: 640px) {
+        .check-wrapper {
+            left: 15%;
+            width: 400px;
+        }
+        .check-wrapper .check img {
+            width: 300px;
+        }
+    }
+    @media screen and (min-width: 768px) {
+        .check-wrapper {
+            left: 24%;
+            
+        }
+    }
+    @media screen and (min-width: 992px) {
+        .check-wrapper {
+            left: 37%;
+            
+        }
+    }
+</style>
 <div class="block block-subscribe" id="newsletter_popup">
-    <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-popup-validate-detail" onsubmit="setNewsletterCookie()">
-        <div class="block-content">            
-            <?php echo $popup['newsletter_content']; ?>
-            <div class="input-box">
-                <label><?php echo $this->__("Email Address") ?></label>
-                <button type="submit" title="<?php echo $this->__('Sign in') ?>" class="button"><span><span><?php echo $this->__('Sign in') ?></span></span></button>
-                <input type="text" name="email" id="newsletter_popup_email" title="<?php echo $this->__('Sign up for our newsletter') ?>" class="input-text required-entry validate-email" placeholder="<?php echo $this->__("Email Address"); ?>" />                
-                <div class="clearer"></div>
+</div>
+<div class="check-wrapper" id="check-wrapper">
+    <div class="check">
+        <div>
+            <span class="welcome">Welcome to</span>
+            <span class="title">King David PH</span>
+                <img src="http://store.staging.shop.esh.ph/skin/frontend/rb/default/images/logo.png">
+            <span class="intention"><b>King David PH</b> make sure that our product will only be sold to people of legal smoking age. Please verify your age to proceed.</span>
+        </div>
+        <div class="selection">
+            <div class="over18" onClick="closePopUp();">
+                Yes, I am over 18 <i class="fa fa-thumbs-up"></i>
+            </div>
+            <div class="under18" onclick="closeBrowser()">
+                Oops! Im outta here! <i class="fa fa-frown-o"></i>
             </div>
         </div>
-    </form>
-    <script type="text/javascript">
-    //<![CDATA[
-        var newsletterpopupSubscriberFormDetail = new VarienForm('newsletter-popup-validate-detail');
-        document.getElementById("newsletter-popup-validate-detail").onsubmit=function(){
-            jQuery.cookie('newsletter_popup','dontshowitagain');
-        }
-    //]]>
-    </script>
-    <div class="subscribe-bottom">
-        <input type="checkbox" id="newsletter_popup_dont_show_again"/>
-        <label for="newsletter_popup_dont_show_again"><?php echo $this->__("Don't show this popup again"); ?></label>
+        <div class="copyright">
+            &#169;  KING DAVID PH 2015
+        </div>
     </div>
 </div>
+<div class="over-lay"></div>
