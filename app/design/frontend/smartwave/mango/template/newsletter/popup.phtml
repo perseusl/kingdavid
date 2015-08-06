@@ -124,7 +124,6 @@ function closeBrowser() {
     }
     .selection .over18 ,.selection .under18 {
         margin-top: 10px;
-        padding: 10px;
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
@@ -135,10 +134,15 @@ function closeBrowser() {
         text-shadow: 0px 1px 0px rgba(255,255,255,.4);
         -webkit-transition: all 1s ease;
     }
+    .selection .under18 a {
+        display: block;
+        padding: 10px;
+    }
     .selection .over18 i ,.selection .under18 i {
         margin-left: 5px;
     }
     .selection .over18 {
+        padding: 10px;
         color: #fff;
         background-image: -webkit-linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 72));
         background-image: -moz-linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 72));
@@ -259,7 +263,7 @@ function closeBrowser() {
                 Yes, I am over 18 <i class="fa fa-thumbs-up"></i>
             </div>
             <div class="under18" onclick="closeBrowser()">
-                Oops! Im outta here! <i class="fa fa-frown-o"></i>
+                <a href='/nothing'>Oops! Im outta here! <i class="fa fa-frown-o"></i></a>
             </div>
         </div>
         <div class="copyright">
