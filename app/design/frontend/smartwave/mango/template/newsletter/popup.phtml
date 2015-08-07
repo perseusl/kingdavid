@@ -53,14 +53,52 @@ function beginNewsletterForm() {
     });*/
     /*jQuery('#newsletter_popup').trigger('click');*/
 }
-
+function getAge(birthDateString) {
+    var today = new Date();
+    var birthDate = new Date(birthDateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+function addBirthDate() {
+    
+    jQuery(".verify-age").fadeOut();
+    jQuery(".verify-birthdate").fadeIn();
+}
 function closePopUp() {
-    jQuery("#check-wrapper").fadeOut();
-    jQuery(".over-lay").hide();
+    var now = new Date(),
+        birthdate = '';
+        time = now.getTime();
+            time += 3600 * 1000;
+            now.setTime(time);
+
+    birthdate = jQuery("#verify-datepicker").val();
+    if(getAge(birthdate) >= 18) {
+        document.cookie = 'username=kingdavid_visitor' + '; expires=' + now + '; path=/';
+        document.cookie = 'birthdate=' + birthdate + '; expires=' + now + '; path=/';
+        jQuery("#check-wrapper").fadeOut();
+        jQuery(".over-lay").hide();
+    }
+    else {
+        alert("Seems like you are under 18.");
+        window.location.href = "http://local.kingdavid.ph/nothing";
+    }
 }
-function closeBrowser() {
-    window.open('','_self').close();
-}
+jQuery(document).ready(function(){
+    if(document.cookie.indexOf("kingdavid_visitor") != -1) {
+        jQuery("#check-wrapper").hide();
+        jQuery(".over-lay").hide();
+    }
+    jQuery("#verify-datepicker").datepicker({ 
+        yearRange: "-20:+18", // this is the option you're looking for
+        showOn: "both", 
+        buttonImage: "skin/frontend/base/default/images/calendar-128.png", 
+        buttonImageOnly: true 
+    });
+});
 </script>
 <style type="text/css">
     .over-lay {
@@ -196,11 +234,29 @@ function closeBrowser() {
         border: 1px solid #b0333e;
         cursor: pointer;
     }
+    .verify-birthdate input[type=text] {
+        width: 85%;
+        float: left;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    .verify-birthdate img {
+        float: right;
+        width: 35px !important;
+        margin-top: -2px !important;
+    }
+    .verify-birthdate button {
+        width: 100%;
+        padding: 10px;
+    }
     .copyright {
         text-align: center; 
         margin-top: 15px;
         font-size: 0.8em;
         color: #C1C1C1;
+    }
+    .verify-birthdate {
+        display: none; 
     }
     @media screen and (max-width: 430px) {
         .check-wrapper {
@@ -247,28 +303,38 @@ function closeBrowser() {
             
         }
     }
+
 </style>
 <div class="block block-subscribe" id="newsletter_popup">
 </div>
 <div class="check-wrapper" id="check-wrapper">
     <div class="check">
-        <div>
-            <span class="welcome">Welcome to</span>
-            <span class="title">King David PH</span>
-                <img src="http://store.staging.shop.esh.ph/skin/frontend/rb/default/images/logo.png">
-            <span class="intention"><b>King David PH</b> make sure that our product will only be sold to people of legal smoking age. Please verify your age to proceed.</span>
+        <div class="verify-age">
+            <div>
+                <span class="welcome">Welcome to</span>
+                <span class="title">King David PH</span>
+                    <img src="http://store.staging.shop.esh.ph/skin/frontend/rb/default/images/logo.png">
+                <span class="intention"><b>King David Fineries</b> makes sure that our product will only be sold to people of legal smoking age. Please verify your age to proceed.</span>
+            </div>
+            <div class="selection">
+                <div class="over18" onClick="addBirthDate();">
+                    Yes, I am over 18 <i class="fa fa-thumbs-up"></i>
+                </div>
+                <div class="under18">
+                    <a href='/nothing'>Oops! Im outta here! <i class="fa fa-frown-o"></i></a>
+                </div>
+            </div>
         </div>
-        <div class="selection">
-            <div class="over18" onClick="closePopUp();">
-                Yes, I am over 18 <i class="fa fa-thumbs-up"></i>
-            </div>
-            <div class="under18" onclick="closeBrowser()">
-                <a href='/nothing'>Oops! Im outta here! <i class="fa fa-frown-o"></i></a>
-            </div>
+        <div class="verify-birthdate">
+            <h1>Enter Your Birthdate</h1>
+            <input type="text" class="form-control" id="verify-datepicker" placeholder="MM/DD/YYYY">
+            <button onClick="closePopUp();">Continue</button>
         </div>
         <div class="copyright">
             &#169;  KING DAVID PH 2015
         </div>
     </div>
+    
+    
 </div>
 <div class="over-lay"></div>
