@@ -76,16 +76,22 @@ function closePopUp() {
             now.setTime(time);
 
     birthdate = jQuery("#verify-datepicker").val();
-    if(getAge(birthdate) >= 18) {
+    if(birthdate !== "") {
+        if(getAge(birthdate) >= 18) {
         document.cookie = 'username=kingdavid_visitor' + '; expires=' + now + '; path=/';
         document.cookie = 'birthdate=' + birthdate + '; expires=' + now + '; path=/';
         jQuery("#check-wrapper").fadeOut();
         jQuery(".over-lay").hide();
+        }
+        else {
+            alert("Seems like you are under 18.");
+            window.location.href = "http://local.kingdavid.ph/nothing";
+        }
     }
     else {
-        alert("Seems like you are under 18.");
-        window.location.href = "http://local.kingdavid.ph/nothing";
+        alert("Please input birthdate");
     }
+    
 }
 jQuery(document).ready(function(){
     if(document.cookie.indexOf("kingdavid_visitor") != -1) {
@@ -134,6 +140,7 @@ jQuery(document).ready(function(){
         width: 300px;
         display: block;
         margin: 0 auto;
+        margin-bottom: 10px;
     }
     .check-wrapper .check span {
         display: block;
@@ -148,11 +155,12 @@ jQuery(document).ready(function(){
         text-align: justify;
     }
     .check-wrapper .check .title {
-        font-size: 2.5em;
+        font-size: 2.2em;
         text-transform: uppercase;
         font-weight: 700;
         color: #484848;
         text-shadow: 0 2px 1px #969696;
+        margin-bottom: 10px;
     }
     .selection {
         margin-top: 20px;
@@ -303,7 +311,6 @@ jQuery(document).ready(function(){
             
         }
     }
-
 </style>
 <div class="block block-subscribe" id="newsletter_popup">
 </div>
@@ -312,13 +319,13 @@ jQuery(document).ready(function(){
         <div class="verify-age">
             <div>
                 <span class="welcome">Welcome to</span>
-                <span class="title">King David PH</span>
-                    <img src="http://store.staging.shop.esh.ph/skin/frontend/rb/default/images/logo.png">
+                <span class="title">King David Fineries</span>
+                    <img src="skin/frontend/smartwave/mango/images/logo.png">
                 <span class="intention"><b>King David Fineries</b> makes sure that our product will only be sold to people of legal smoking age. Please verify your age to proceed.</span>
             </div>
             <div class="selection">
                 <div class="over18" onClick="addBirthDate();">
-                    Yes, I am over 18 <i class="fa fa-thumbs-up"></i>
+                    I am over 18 <i class="fa fa-thumbs-up"></i>
                 </div>
                 <div class="under18">
                     <a href='/nothing'>Oops! Im outta here! <i class="fa fa-frown-o"></i></a>
